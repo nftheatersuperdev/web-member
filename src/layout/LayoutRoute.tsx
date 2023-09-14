@@ -81,6 +81,7 @@ function PrivateRoute({
       <Navbar />
         <Main>
           {/* @ts-expect-error TODO */}
+          <br/ >
           <Component {...props} />
         </Main>
       <Footer />

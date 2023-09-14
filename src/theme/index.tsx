@@ -27,7 +27,9 @@ const createTheme = () => {
       breakpoints,
       // @ts-expect-error
       components,
-      typography,
+      typography: {
+        "fontFamily": `"Prompt", sans-serif`,
+      },
       shadows,
       palette: {
         mode: 'light',
