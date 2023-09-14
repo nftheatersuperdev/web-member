@@ -1,0 +1,294 @@
+{
+  "header": {
+    "aria": {
+      "sidebarToggle": "Sidebar Toggle",
+      "logo": "EVme Logo",
+      "changeLanguage": "Change Language",
+      "settings": "Settings",
+      "login": "Login"
+    },
+    "menu": {
+      "profile": "Profile",
+      "logout": "Logout"
+    },
+    "version": "Version"
+  },
+  "sidebar": {
+    "pages": "Pages",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Setting",
+    "userManagement": {
+      "title": "User Management",
+      "customerProfile": "Customer Profile",
+      "staffProfile": "Staff Profile",
+      "userGroup": "User Group",
+      "adminUsers": "Admin Users"
+    },
+    "adminManagement": {
+      "title": "Admin Management"
+    },
+    "netflixAccount": {
+      "title": "Netflix Account"
+    },
+    "youtubeAccount": {
+      "title": "Youtube Account"
+    },
+    "settingConfig": "Configuration"
+  },
+  "button": {
+    "add": "Add",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "create": "Create",
+    "update": "Update",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "close": "Close",
+    "confirm": "Confirm",
+    "search": "Search",
+    "clear": "Clear",
+    "back": "Back",
+    "invite": "Invite",
+    "inviteAmount": "Invite {{amount}} emails",
+    "filter": "Filter",
+    "export": "Export",
+    "clearAll": "Clear all",
+    "save": "Save",
+    "addNew": "Add New",
+    "deleteProfile": "Delete Profile",
+    "upload": "Upload",
+    "addAdditional": "Add Additional",
+    "extendUser": "Extend",
+    "disabled": "Disable",
+    "enabled": "Enable",
+    "transfer":"Transfer"
+  },
+  "datetimePicker": {
+    "invalidDateMessage": "Invalid Date Format",
+    "invalidLabel": "unknown",
+    "cancelLabel": "Cancel",
+    "clearLabel": "Clear",
+    "okLabel": "OK",
+    "todayLabel": "Today"
+  },
+  "toast": {
+    "loading": "Loading..."
+  },
+  "authentication": {
+    "success": "Login successful",
+    "error": {
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "invalidEmail": "Email is invalid",
+      "invalidPassword": "Password is invalid",
+      "invalidUserToken": "Token is invalid",
+      "invalidCredential": "Invalid credential",
+      "userNotFound": "User not found",
+      "userDisabled": "User is disabled",
+      "userTokenExpired": "Token has expired",
+      "userMismatch": "User mismatch",
+      "weakPassword": "Password must contain at least 8 characters, one uppercase, one number and one special case character",
+      "requiresRecentLogin": "Please re-login again",
+      "authenticationFailed": "Login failed",
+      "permissionNotAllowed": "Permission not allowed",
+      "unknownError": "An unknown authentication error occurred, Please contact operation support",
+      "passwordCondition": "Password must contain at least 8 characters, one uppercase, one number and one special character",
+      "accessDenied": "User cannot access"
+    }
+  },
+  "login": {
+    "title": "NF Theater",
+    "subTitle": "Admin Portal",
+    "email": "Email Address",
+    "password": "Password",
+    "rememberMe": "Remember Me"
+  },
+  "home": {
+    "title": "Welcome to NF Theater Administration"
+  },
+  "forbidden": {
+    "title": "403 - Forbidden: Access is denied"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found"
+  },
+  "dashboard": {
+    "allLocation": "All Location",
+    "location": "Location Service",
+    "overall": "Overall",
+    "kyc": "KYCs (Sumsub)",
+    "booking": "Bookings",
+    "totalCars": {
+      "title": "Total Cars",
+      "subTitle": "Number of cars currently available"
+    },
+    "totalBooking": {
+      "title": "Total Bookings",
+      "subTitle": "Number of currently active bookings"
+    },
+    "totalUpcomingCarsDelivery": {
+      "title": "Upcoming Cars Delivery",
+      "subTitle": "Today"
+    },
+    "totalUpcomingCarsReturn": {
+      "title": "Upcoming Cars Return",
+      "subTitle": "Today"
+    },
+    "totalPayments": {
+      "title": "Total Payments",
+      "subTitle": "Total amount of payments today"
+    },
+    "totalUsers": {
+      "title": "Total Users",
+      "subTitle": "Total number of registered users"
+    },
+    "totalRequestedCases": {
+      "title": "Total Requested Cases",
+      "subTitle": "Number of requested cases"
+    },
+    "totalApprovedCases": {
+      "title": "Total Approved Cases",
+      "subTitle": "Number of approved cases"
+    },
+    "totalRejectedCases": {
+      "title": "Total Rejected Cases",
+      "subTitle": "Number of rejected cases"
+    },
+    "quickLinks": "Quick Links",
+    "carDelivery": {
+      "title": "Upcoming Cars Delivery",
+      "dialogTitle": "Delivery Detail"
+    },
+    "carReturn": {
+      "title": "Upcoming Cars Return",
+      "dialogTitle": "Return Detail"
+    },
+    "reportOfUserRegistration": {
+      "title": "Reports of User Registration",
+      "periodDate": "Period Date"
+    },
+    "selectedDate": "Date",
+    "subscriptionId": "Subscription ID",
+    "userName": "User Name",
+    "carDisplayName": "Car",
+    "plateNumber": "Plate Number",
+    "deliveryDate": "Delivery Date",
+    "returnDate": "Return Date",
+    "email": "Email",
+    "phone": "Phone Number",
+    "remark": "Remark"
+  },
+  "search": {
+    "initPlaceholderInputField": "Enter Search"
+  },
+  "warning": {
+    "noResult": "No Result. Please try again",
+    "noResultList": "Sorry, we couldn’t find any results",
+    "noData": "No Data"
+  },
+  "pagination": {
+    "rowsPerPage": "Rows per page",
+    "of": "of"
+  },
+  "role": {
+    "superAdmin": "Super Administrator",
+    "netflixAdmin": "Netflix Administrator",
+    "netflixAuthor": "Netflix Authorizer",
+    "youtubeAdmin": "Youtube Administrator",
+    "youtubeAuthor": "Youtube Authorizer"  
+  },
+  "adminUser": {
+    "title": "Administrator",
+    "searchPanel": "Search Admin User",
+    "AddAdmin": "Add new Admin",
+    "mainInfo": {
+      "title": "Admin User Details",
+      "firebaseId": "Firebase ID",
+      "name": "Admin Name",
+      "email":"E-Mail",
+      "password": "Password",
+      "role": "Role",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "createdBy": "Created By",
+      "updatedBy": "Updated By"
+    }
+  },
+  "youtube": {
+    "title": "Youtube",
+    "searchPanel": "Search Youtube Account",
+    "mainInfo": {
+      "title": "Youtube Account Details",
+      "accountName": "Account Name",
+      "changeDate": "Change Date",
+      "email":"E-Mail",
+      "password": "Password",
+      "accountStatus": "Account Status",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "createdBy": "Created By",
+      "updatedBy": "Updated By"
+    },
+    "statuses": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "appeal": "Appeal",
+      "renew": "Re-new"
+    },
+    "customer": "Customer Name",
+    "addUser": "Add User",
+    "transferUser": "Move User",
+    "fromAccount": "From Account",
+    "toAccount": "To Account",
+    "extendUser": "Extend User",
+    "addYoutube": "Add new Youtube account",
+    "user": "Youtube User"
+  },
+  "netflix": {
+    "title": "Netflix",
+    "searchPanel": "Search Netflix Account",
+    "mainInfo": {
+      "title": "Netflix Account Details",
+      "accountName": "Account Name",
+      "changeDate": "Change Date",
+      "email":"E-Mail",
+      "password": "Password",
+      "accountStatus": "Account Status",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "createdBy": "Created By",
+      "updatedBy": "Updated By"
+    },
+    "statuses": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "additionalAccount": "AdditionalAccount",
+    "user": "Netflix User",
+    "customer": "Customer Name",
+    "addScreen": "Add Screen",
+    "addUser": "Add User",
+    "transferUser": "Move User",
+    "fromAccount": "From Account",
+    "toAccount": "To Account",
+    "extendUser": "Extend User",
+    "addNetflix": "Add new Netflix account",
+    "editScreen": "Edit Screen"
+  },
+  "customer": {
+    "title": "Customer",
+    "userId": "User ID",
+    "searchPanel": "Search Customer",
+    "customerName":"Customer Name",
+    "email":"Email",
+    "phoneNumber":"Phone Number",
+    "lineId":"Line Name",
+    "lineUrl":"Line URL",
+    "account": "Account",
+    "extendDays": "Extend Day"
+  },
+  "settingConfig": {
+    "searchPanel": "Search Configuration"
+  }
+}

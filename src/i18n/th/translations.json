@@ -1,0 +1,294 @@
+{
+  "header": {
+    "aria": {
+      "sidebarToggle": "สลับแถบด้านข้าง",
+      "logo": "โลโก้ EVme",
+      "changeLanguage": "เปลี่ยนภาษา",
+      "settings": "ตั้งค่า",
+      "login": "เข้าสู่ระบบ"
+    },
+    "menu": {
+      "profile": "โปรไฟล์",
+      "logout": "ออกจากระบบ"
+    },
+    "version": "เวอร์ชั่น"
+  },
+  "sidebar": {
+    "pages": "หน้าต่างๆ",
+    "dashboard": "แดชบอร์ด",
+    "profile": "โปรไฟล์",
+    "settings": "ตั้งค่า",
+    "userManagement": {
+      "title": "การจัดการผู้ใช้งาน (ลูกค้า)",
+      "customerProfile": "โปรไฟล์ลูกค้า",
+      "staffProfile": "โปรไฟล์พนักงาน",
+      "userGroup": "กลุ่มผู้ใช้งาน",
+      "adminUsers": "ผู้ใช้งานระบบหลังบ้าน"
+    },
+    "adminManagement": {
+      "title": "การจัดการแอดมิน"
+    },
+    "netflixAccount": {
+      "title": "บัญชี Netflix"
+    },
+    "youtubeAccount": {
+      "title": "บัญชี Youtube"
+    },
+    "settingConfig": "การตั้งค่าระบบ"
+  },
+  "button": {
+    "add": "เพิ่ม",
+    "signIn": "เข้าสู่ระบบ",
+    "signOut": "ออกจากระบบ",
+    "create": "สร้าง",
+    "update": "อัพเดตข้อมูล",
+    "delete": "ลบ",
+    "cancel": "ยกเลิก",
+    "close": "ปิด",
+    "confirm": "ยืนยัน",
+    "search": "ค้นหา",
+    "clear": "เคลียร์",
+    "back": "กลับ",
+    "invite": "เชิญชวน",
+    "inviteAmount": "เชิญชวน {{amount}} อีเมล",
+    "filter": "กรองข้อมูล",
+    "export": "ส่งออกข้อมูล",
+    "clearAll": "ล้างทั้งหมด",
+    "save": "บันทึก",
+    "addNew": "เพิ่มใหม่",
+    "deleteProfile": "ลบพนักงาน",
+    "upload": "อัพโหลดรูปภาพ",
+    "addAdditional": "เพิ่มจอเสริม",
+    "extendUser": "ต่ออายุ",
+    "disabled": "ปิดการใช้งานชั่วคราว",
+    "enabled": "เปิดการใช้งาน",
+    "transfer":"ย้ายข้อมูล"
+  },
+  "datetimePicker": {
+    "invalidDateMessage": "รูปแบบวันที่ไม่ถูกต้อง",
+    "invalidLabel": "เกิดข้อผิดพลาด",
+    "cancelLabel": "ยกเลิก",
+    "clearLabel": "เคลียร์",
+    "okLabel": "ตกลง",
+    "todayLabel": "วันนี้"
+  },
+  "toast": {
+    "loading": "กำลังดำเนินการ..."
+  },
+  "authentication": {
+    "success": "เข้าสู่ระบบสำเร็จ",
+    "error": {
+      "emailRequired": "ระบุอีเมล",
+      "passwordRequired": "ระบุรหัสผ่าน",
+      "invalidEmail": "อีเมลไม่ถูกต้อง",
+      "invalidPassword": "รหัสผ่านไม่ถูกต้อง",
+      "invalidUserToken": "รหัส Token ไม่ถูกต้อง",
+      "invalidCredential": "การยืนยันตัวตนไม่ถูกต้อง",
+      "userNotFound": "ไม่มีชื่อผู้ใช้นี้ในระบบ",
+      "userDisabled": "ชื่อผู้ใช้นี้ไม่สามารถใช้งานได้",
+      "userTokenExpired": "รหัส Token หมดอายุ",
+      "userMismatch": "ชื่อผู้ใช้ไม่ตรงกัน",
+      "weakPassword": "รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร ประกอบด้วยตัวเล็ก ตัวใหญ่และรวมถึงสัญญาลักษณพิเศษอย่างน้อยอย่างละ 1 ตัวอักษร",
+      "requiresRecentLogin": "กรุณาลงชื่อเข้าใช้ระบบอีกครั้ง",
+      "authenticationFailed": "เข้าสู่ระบบไม่สำเร็จ",
+      "permissionNotAllowed": "ไม่มีสิทธิ์ในการใช้งาน",
+      "unknownError": "เกิดข้อผิดพลาดในการเข้าใช้งานระบบ, กรุณาติดต่อทีมดูแลระบบ",
+      "passwordCondition": "รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร ประกอบด้วยตัวเล็ก ตัวใหญ่และรวมถึงสัญญาลักษณพิเศษอย่างน้อยอย่างละ 1 ตัวอักษร",
+      "accessDenied": "ไม่มีสิทธิ์เข้าใช้งาน"
+    }
+  },
+  "login": {
+    "title": "NF Theater",
+    "subTitle": "Admin Portal",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "rememberMe": "จำรหัสผ่านของฉัน"
+  },
+  "home": {
+    "title": "ยินดีต้อนรับเข้าสู่ NF Theater Administration"
+  },
+  "forbidden": {
+    "title": "403 - คุณไม่มีสิทธิ์ในการเข้าถึง"
+  },
+  "notFound": {
+    "title": "404 - ไม่พบหน้า"
+  },
+  "dashboard": {
+    "allLocation": "สถานที่บริการทั้งหมด",
+    "location": "สถานที่บริการ",
+    "overall": "Overall",
+    "kyc": "KYCs (Sumsub)",
+    "booking": "การจอง",
+    "totalCars": {
+      "title": "รถยนต์",
+      "subTitle": "จำนวนรถยนต์ทั้งหมด"
+    },
+    "totalBooking": {
+      "title": "ข้อมูลการจอง",
+      "subTitle": "จำนวนการจองทั้งหมด"
+    },
+    "totalUpcomingCarsDelivery": {
+      "title": "การส่งมอบรถยนต์ที่กำลังจะมาถึง",
+      "subTitle": "วันนี้"
+    },
+    "totalUpcomingCarsReturn": {
+      "title": "การคืนรถยนต์ที่กำลังจะมาถึง",
+      "subTitle": "วันนี้"
+    },
+    "totalPayments": {
+      "title": "ยอดชำระเงิน",
+      "subTitle": "ยอดชำระเงินรวมวันนี้"
+    },
+    "totalUsers": {
+      "title": "สมาชิก",
+      "subTitle": "จำนวนสมาชิกทั้งหมด"
+    },
+    "totalRequestedCases": {
+      "title": "ได้รับเอกสาร",
+      "subTitle": "จำนวนได้รับเอกสาร"
+    },
+    "totalApprovedCases": {
+      "title": "ผ่านการตรวจสอบ",
+      "subTitle": "จำนวนผ่านการตรวจสอบ"
+    },
+    "totalRejectedCases": {
+      "title": "ไม่ผ่านการตรวจสอบ",
+      "subTitle": "จำนวนไม่ผ่านการตรวจสอบ"
+    },
+    "quickLinks": "ควิกลิงค์",
+    "carDelivery": {
+      "title": "รถยนต์ที่ต้องจัดส่ง",
+      "dialogTitle": "รายละเอียดการจัดส่ง"
+    },
+    "carReturn": {
+      "title": "รถยนต์ที่ต้องรับคืน",
+      "dialogTitle": "รายละเอียดการรับคืน"
+    },
+    "reportOfUserRegistration": {
+      "title": "รายงานการตรวจสอบความถูกต้องของบุคคล",
+      "periodDate": "ประจำวันที่"
+    },
+    "selectedDate": "วันที่",
+    "subscriptionId": "หมายเลขการจอง",
+    "userName": "ชื่อสมาชิก",
+    "carDisplayName": "รถยนต์",
+    "plateNumber": "เลขทะเบียน",
+    "deliveryDate": "วันที่จัดส่ง",
+    "returnDate": "วันที่รับคืน",
+    "email": "อีเมล",
+    "phone": "หมายเลขโทรศัพท์",
+    "remark": "หมายเหตุ"
+  },
+  "search": {
+    "initPlaceholderInputField": "ค้นหา"
+  },
+  "warning": {
+    "noResult": "ยังไม่มีรายการ กรุณาลองใหม่",
+    "noResultList": "ขออภัย เราไม่พบผลลัพธ์ใดๆ",
+    "noData": "ไม่มีข้อมูล"
+  },
+  "pagination": {
+    "rowsPerPage": "จำนวนรายการต่อหน้า",
+    "of": "ใน"
+  },
+  "role": {
+    "superAdmin": "ผู้ดูแลระบบระดับสูง",
+    "netflixAdmin": "แอดมิน Netflix",
+    "netflixAuthor": "หัวหน้าแอดมิน Netflix",
+    "youtubeAdmin": "แอดมิน Youtube",
+    "youtubeAuthor": "หัวหน้าแอดมิน Youtube"  
+  },
+  "adminUser": {
+    "title": "แอดมิน",
+    "searchPanel": "ค้นหาแอดมิน",
+    "AddAdmin": "สร้างแอดมินใหม่",
+    "mainInfo": {
+      "title": "รายละเอียดผู้ใช้งานแอดมิน",
+      "firebaseId": "Firebase ID",
+      "name": "ชื่อแอดมิน",
+      "email":"อีเมลล์",
+      "password": "รหัสผ่าน",
+      "role": "ระดับผู้ใช้งาน",
+      "createdDate": "วัน-เวลาที่สร้าง",
+      "updatedDate": "วัน-เวลาที่ปรับปรุงล่าสุด",
+      "createdBy": "สร้างโดย",
+      "updatedBy": "ปรับปรุงล่าสุดโดย"
+    }
+  },
+  "youtube": {
+    "title": "Youtube",
+    "searchPanel": "ค้นหาบัญชี Youtube",
+    "mainInfo": {
+      "title": "รายละเอียดบัญชี Youtube",
+      "accountName": "ชื่อบัญชี",
+      "changeDate": "วันสลับ",
+      "email":"อีเมล",
+      "password": "รหัสผ่าน",
+      "accountStatus": "สถานะบัญชี",
+      "createdDate": "วัน-เวลาที่สร้าง",
+      "updatedDate": "วัน-เวลาที่ปรับปรุงล่าสุด",
+      "createdBy": "สร้างโดย",
+      "updatedBy": "ปรับปรุงล่าสุดโดย"
+    },
+    "statuses": {
+      "active": "กำลังใช้งานอยู่",
+      "inactive": "ปิดการใช้งานชั่วคราว",
+      "appeal": "อุทธรณ์",
+      "renew": "สร้างใหม่-รอยกเลิก"
+    },
+    "customer": "ชื่อลูกค้า",
+    "addUser": "เพิ่มลูกค้า",
+    "transferUser": "ย้ายลูกค้า",
+    "fromAccount": "จากบัญชี",
+    "toAccount": "ไปยังบัญชี",
+    "extendUser": "ต่ออายุลูกค้า",
+    "addYoutube": "สร้างบัญชี Youtube",
+    "user": "ลูกค้า"
+  },
+  "netflix": {
+    "title": "Netflix",
+    "searchPanel": "ค้นหาบัญชี Netflix",
+    "mainInfo": {
+      "title": "รายละเอียดบัญชี Netflix",
+      "accountName": "ชื่อบัญชี",
+      "changeDate": "วันสลับ",
+      "email":"อีเมล",
+      "password": "รหัสผ่าน",
+      "accountStatus": "สถานะบัญชี",
+      "createdDate": "วัน-เวลาที่สร้าง",
+      "updatedDate": "วัน-เวลาที่ปรับปรุงล่าสุด",
+      "createdBy": "สร้างโดย",
+      "updatedBy": "ปรับปรุงล่าสุดโดย"
+    },
+    "statuses": {
+      "active": "กำลังใช้งานอยู่",
+      "inactive": "ปิดการใช้งานชั่วคราว"
+    },
+    "additionalAccount": "บริการเสริม",
+    "user": "ลูกค้า",
+    "customer": "ชื่อลูกค้า",
+    "addScreen": "เพิ่มหน้าจอเสริม",
+    "addUser": "เพิ่มลูกค้า",
+    "transferUser": "ย้ายลูกค้า",
+    "fromAccount": "จากบัญชี",
+    "toAccount": "ไปยังบัญชี",
+    "extendUser": "ต่ออายุลูกค้า",
+    "addNetflix": "สร้างบัญชี Netflix",
+    "editScreen": "อัพเดตหน้าจอเสริม"
+  },
+  "customer": {
+    "title": "ลูกค้า",
+    "userId": "รหัสลูกค้า",
+    "searchPanel": "ค้นหาลูกค้า",
+    "customerName":"ชื่อลูกค้า",
+    "email":"อีเมลล์",
+    "phoneNumber":"เบอร์โทรศัพท์",
+    "lineId":"ชื่อ Line",
+    "lineUrl":"Line URL",
+    "account": "บัญชี",
+    "extendDays": "จำนวนวัน"
+  },
+  "settingConfig": {
+    "searchPanel": "ค้นหาการตั้งค่า"
+  }
+}
