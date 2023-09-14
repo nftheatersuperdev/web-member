@@ -23,7 +23,7 @@ function Copyright() {
 function footer() {
     
   return (
-    <AppBar position="sticky" elevation={0}>
+    <AppBar position="static" elevation={0}>
         <Toolbar>
             <Copyright />
         </Toolbar>

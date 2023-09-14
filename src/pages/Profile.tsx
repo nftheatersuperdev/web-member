@@ -42,7 +42,7 @@ export default function Profile(): JSX.Element {
   const handleClose = () => {
     setOpen(false)
   }
-  
+
   const handleLogout = () => {
     toast.promise(logout(), {
       loading: 'กำลัังโหลด',
@@ -72,14 +72,23 @@ export default function Profile(): JSX.Element {
         ''
       )}
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }} >
-        <Paper elevation={24} variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+      <br />
+      <br />
+        <Paper 
+          elevation={24}
+          variant="outlined"
+          sx={{ 
+            my: { xs: 3, md: 6 }, 
+            p: { xs: 2, md: 3 }, 
+            }}
+          >
           <Typography component="h1" variant="h4" align="center">
             ข้อมูลสมาชิก
           </Typography>
           <br /><br />
           <Grid container spacing={3}>
             <Grid item xs={6} sm={6}>
-              <Typography variant="h4" align="left">ไอดี</Typography>
+              <Typography variant="h5" align="left">ไอดี</Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
               <DisabledField
@@ -91,7 +100,7 @@ export default function Profile(): JSX.Element {
               />
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Typography variant="h4" align="left">แต้มแนะนำเพื่อน </Typography>
+              <Typography variant="h5" align="left">แต้มแนะนำเพื่อน </Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
               <DisabledField
@@ -103,7 +112,7 @@ export default function Profile(): JSX.Element {
               />
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h4" align="left">แพ็คเก็ต Netflix</Typography>
+              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h5" align="left">แพ็คเก็ต Netflix</Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
               <DisabledField
@@ -116,7 +125,7 @@ export default function Profile(): JSX.Element {
               />
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h4" align="left">จำนวนวันเหลือ</Typography>
+              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h5" align="left">จำนวนวันเหลือ</Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
               <DisabledField
@@ -129,7 +138,7 @@ export default function Profile(): JSX.Element {
               />
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h4" align="left">Netflix Email</Typography>
+              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h5" align="left">Netflix Email</Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
             <DisabledField
@@ -142,7 +151,7 @@ export default function Profile(): JSX.Element {
               />
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h4" align="left">Netflix Password</Typography>
+              <Typography className={profile?.netflixPackageName === null ? classes.hideObject : ''} variant="h5" align="left">Netflix Password</Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
             <DisabledField
@@ -167,7 +176,7 @@ export default function Profile(): JSX.Element {
             </Grid>
             <Divider />
             <Grid item xs={6} sm={6}>
-              <Typography className={profile?.youtubePackageName === null ? classes.hideObject : ''} variant="h4" align="left">แพ็คเก็ต Youtube</Typography>
+              <Typography className={profile?.youtubePackageName === null ? classes.hideObject : ''} variant="h5" align="left">แพ็คเก็ต Youtube</Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
               <DisabledField
@@ -180,7 +189,7 @@ export default function Profile(): JSX.Element {
               />
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Typography className={profile?.youtubePackageName === null ? classes.hideObject : ''} variant="h4" align="left">จำนวนวันเหลือ</Typography>
+              <Typography className={profile?.youtubePackageName === null ? classes.hideObject : ''} variant="h5" align="left">จำนวนวันเหลือ</Typography>
             </Grid>
             <Grid item xs={6} sm={6}>
               <DisabledField

@@ -32,6 +32,6 @@ export const routes: Readonly<LayoutRouteProps[]> = Object.freeze([
   },
   {
     path: ROUTE_PATHS.ROOT,
-    component: lazy(() => import('./pages/Home' /* webpackChunkName: "app" */)),
+    component: lazy(() => import('./pages/Profile' /* webpackChunkName: "app" */)),
   },
 ])

@@ -14,7 +14,7 @@ const AppBar = styled(MuiAppBar)`
 function Navbar() {
 
   return (
-    <AppBar position="sticky" elevation={0}>
+    <AppBar position="fixed">
       <Toolbar>
         <Grid container alignItems="right">
           <Grid item />
