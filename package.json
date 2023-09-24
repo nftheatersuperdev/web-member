@@ -1,6 +1,6 @@
 {
   "name": "nftheater-customer",
-  "version": "0.0.3@31-08-2023",
+  "version": "0.0.4@24-09-2023",
   "private": true,
   "engines": {
     "node": ">=16",
