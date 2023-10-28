@@ -8,10 +8,8 @@ import {
   DialogActions,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import { useLiff } from 'react-liff'
 import * as Yup from 'yup'
 import toast from 'react-hot-toast'
-import { useEffect } from 'react'
 import { GridTextField } from 'components/Styled'
 import { verifyMember } from 'services/member'
 
@@ -23,7 +21,6 @@ interface VerifyMemberDialogProps {
 
 export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.Element {
   const { open, onClose, onSuccess } = props
-  const { isLoggedIn, liff } = useLiff()
   const formikVerifyCustomer = useFormik({
     initialValues: {
       customerName: '',
@@ -53,18 +50,18 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
       })
     },
   })
-  useEffect(() => {
-    if (!isLoggedIn) {
-      console.log('LIFF Line Login')
-      liff.login()
-      return
-    }
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     console.log('LIFF Line Login')
+  //     liff.login()
+  //     return
+  //   }
 
-    ;(async () => {
-      const profile = await liff.getProfile()
-      console.log(profile.displayName)
-    })()
-  }, [liff, isLoggedIn])
+  //   ;(async () => {
+  //     const profile = await liff.getProfile()
+  //     console.log(profile.userId)
+  //   })()
+  // }, [liff, isLoggedIn])
 
   return (
     <Dialog open={open} fullWidth aria-labelledby="form-dialog-title">
