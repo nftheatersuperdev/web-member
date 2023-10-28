@@ -4,7 +4,6 @@ import { useFormik } from 'formik'
 import { Button, Container, Grid, Paper, TextField, Typography } from '@material-ui/core'
 import toast from 'react-hot-toast'
 import { makeStyles } from '@mui/styles'
-import React from 'react'
 import { login } from 'services/auth'
 
 export default function Login(): JSX.Element {

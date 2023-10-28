@@ -81,6 +81,7 @@ export default function Profile(): JSX.Element {
     copyText(text)
   }
   const handleLogout = () => {
+    liff.logout()
     toast.promise(logout(), {
       loading: 'กำลัังโหลด',
       success: () => {
@@ -95,7 +96,7 @@ export default function Profile(): JSX.Element {
     if (!isLoggedIn) {
       liff.login()
     } else {
-      (async () => {
+      ;(async () => {
         const profile = await liff.getProfile()
         console.log(profile.userId)
         toast.success('Line Profile : ' + profile.userId)
