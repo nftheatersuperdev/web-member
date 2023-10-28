@@ -1,5 +1,10 @@
 import { AdminBffAPI } from 'api/admin-bff'
-import { Reward, GetMemberProfileResponse, GetNetflixPackageResponse, GetYoutubePackageResponse } from './member-type'
+import {
+  Reward,
+  GetMemberProfileResponse,
+  GetNetflixPackageResponse,
+  GetYoutubePackageResponse,
+} from './member-type'
 
 export const getMemberProfile = async (): Promise<GetMemberProfileResponse> => {
   const response = await AdminBffAPI.get('/v1/member/profile').then((response) => response.data)

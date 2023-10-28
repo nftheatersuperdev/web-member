@@ -13,6 +13,7 @@ interface Config {
   firebaseRestKey: string
   firebase: Record<string, string>
   timezone: string
+  liffId: string
 }
 
 const config: Config = {
@@ -38,6 +39,7 @@ const config: Config = {
     appId: import.meta.env.REACT_APP_FIREBASE_APP_ID || '',
   },
   timezone: 'Asia/Bangkok',
+  liffId: import.meta.env.REACT_APP_LIFF_ID || '',
 }
 
 export default config

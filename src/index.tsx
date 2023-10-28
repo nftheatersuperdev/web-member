@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import theme from 'theme'
 import { ThemeProvider } from 'styled-components'
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles'
+import { LiffProvider } from 'react-liff'
 import App from './App'
 import config from './config'
 
@@ -33,6 +34,8 @@ if (config.isProductionEnvironment) {
   console.info('[Application] Running in development mode.')
 }
 
+const liffId = config.liffId
+
 ReactDOM.render(
   <React.StrictMode>
     <StylesProvider injectFirst>
@@ -40,7 +43,9 @@ ReactDOM.render(
         <ThemeProvider theme={theme()}>
           <CssBaseline />
           <QueryClientProvider client={queryClient}>
-            <App />
+            <LiffProvider liffId={liffId}>
+              <App />
+            </LiffProvider>
           </QueryClientProvider>
         </ThemeProvider>
       </MuiThemeProvider>
