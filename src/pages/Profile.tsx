@@ -62,6 +62,7 @@ export default function Profile(): JSX.Element {
   const [openRewardDialog, setOpenRewardDialog] = useState(false)
   const [openNetflixPackageDialog, setOpenNetflixPackageDialog] = useState(false)
   const [openYoutubePackageDialog, setOpenYoutubePackageDialog] = useState(false)
+  const [lineUserIdParam, setLineUserIdParam] = useState<string>('')
   const [open, setOpen] = useState(true)
   const {
     data: customerProfile,
@@ -98,8 +99,9 @@ export default function Profile(): JSX.Element {
     } else {
       ;(async () => {
         const profile = await liff.getProfile()
-        console.log(profile.userId)
         toast.success('Line Profile : ' + profile.userId)
+        setLineUserIdParam(profile.userId)
+        setOpenVerifyMemberDialog(true)
       })()
     }
   }
@@ -389,6 +391,7 @@ export default function Profile(): JSX.Element {
       </Container>
       <VerifyMemberDialog
         open={openVerifyMemberDialog}
+        lineId={lineUserIdParam}
         onClose={() => setOpenVerifyMemberDialog(false)}
         onSuccess={() => {
           setOpenVerifyMemberDialog(false)

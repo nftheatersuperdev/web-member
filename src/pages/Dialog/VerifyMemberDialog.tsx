@@ -15,22 +15,22 @@ import { verifyMember } from 'services/member'
 
 interface VerifyMemberDialogProps {
   open: boolean
+  lineId: string
   onClose: () => void
   onSuccess: () => void
 }
 
 export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.Element {
-  const { open, onClose, onSuccess } = props
+  const { open, lineId, onClose, onSuccess } = props
   const formikVerifyCustomer = useFormik({
     initialValues: {
       customerName: '',
       phoneNumber: '',
-      lineId: '',
+      lineId,
     },
     validationSchema: Yup.object().shape({
       customerName: Yup.string().required('กรุณาระบุชื่อ-นามสกุล'),
       phoneNumber: Yup.string().max(255).required('กรุณาระบุเบอร์โทรศัพท์'),
-      lineId: Yup.string().max(255).required('กรุณาระบุ Line Id'),
     }),
     enableReinitialize: true,
     onSubmit: (values) => {
