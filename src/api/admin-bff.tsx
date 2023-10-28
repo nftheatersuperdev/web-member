@@ -21,7 +21,6 @@ AdminBffAPI.interceptors.request.use(
     config.headers.timestamp = timestamp
     config.headers.user_agent = browserName
     config.headers.application_version = packageInfo.version
-    config.headers.origin = 'https://nf-api-a1ac277083cb.herokuapp.com'
     return config
   },
   (err) => {

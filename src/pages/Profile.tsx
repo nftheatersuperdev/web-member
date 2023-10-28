@@ -15,6 +15,7 @@ import {
   styled,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { useLiff } from 'react-liff'
 import { makeStyles } from '@mui/styles'
 import { useQuery } from 'react-query'
 import toast from 'react-hot-toast'
@@ -53,6 +54,7 @@ export default function Profile(): JSX.Element {
     },
   })
   const classes = useStyles()
+  const { isLoggedIn, liff } = useLiff()
   const [showPassword, setShowPassword] = useState(false)
   const [openVerifyMemberDialog, setOpenVerifyMemberDialog] = useState(false)
   const [openVerifySuccessDialog, setOpenVerifySuccessDialog] = useState(false)
@@ -88,6 +90,17 @@ export default function Profile(): JSX.Element {
         return err.data.message
       },
     })
+  }
+  const verifyMember = () => {
+    if (!isLoggedIn) {
+      liff.login()
+    } else {
+      (async () => {
+        const profile = await liff.getProfile()
+        console.log(profile.userId)
+        toast.success('Line Profile : ' + profile.userId)
+      })()
+    }
   }
 
   useEffect(() => {
@@ -320,7 +333,8 @@ export default function Profile(): JSX.Element {
                 fullWidth
                 size="large"
                 variant="contained"
-                onClick={() => setOpenVerifyMemberDialog(true)}
+                // onClick={() => setOpenVerifyMemberDialog(true)}
+                onClick={() => verifyMember()}
               >
                 ยืนยันสมาชิก
               </Button>
