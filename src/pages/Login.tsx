@@ -65,6 +65,7 @@ export default function Login(): JSX.Element {
 
     ;(async () => {
       const profile = await liff.getProfile()
+      toast.success(profile.userId)
       console.log(profile.displayName)
     })()
   }, [liff, isLoggedIn])
