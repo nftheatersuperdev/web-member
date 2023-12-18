@@ -57,14 +57,22 @@ export default function Login(): JSX.Element {
     })
 
   useEffect(() => {
-    toast.success('Liff IsLoggedId : ' + isLoggedIn)
     if (!isLoggedIn) {
       liff.login()
     } else {
-      ;(async () => {
-        const profile = await liff.getProfile()
-        toast.success('Line Profile : ' + profile.userId)
-      })()
+      liff
+        .getProfile()
+        .then((profile) => {
+          // console.log(profile)
+          // document.getElementById('pictureUrl').src = profile.pictureUrl
+          // document.getElementById('userId').innerHTML = '<b>UserId:</b> ' + profile.userId
+          // document.getElementById('displayName').innerHTML =
+          //   '<b>DisplayName:</b> ' + profile.displayName
+          // document.getElementById('statusMessage').innerHTML =
+          //   '<b>StatusMessage:</b> ' + profile.statusMessage
+          // document.getElementById("getDecodedIDToken").innerHTML = '<b>Email:</b> ' + liff.getDecodedIDToken().email;
+        })
+        .catch((err) => console.error(err))
     }
   }, [isLoggedIn, liff])
 
