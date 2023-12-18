@@ -4,10 +4,13 @@ import { useFormik } from 'formik'
 import { Button, Container, Grid, Paper, TextField, Typography } from '@material-ui/core'
 import toast from 'react-hot-toast'
 import { makeStyles } from '@mui/styles'
+import { useEffect } from 'react'
+import { useLiff } from 'react-liff'
 import { login } from 'services/auth'
 
 export default function Login(): JSX.Element {
   const history = useHistory()
+  const { isLoggedIn, liff } = useLiff()
   const useStyles = makeStyles({
     item: {
       padding: '0px 35px 0px 35px !important',
@@ -52,6 +55,17 @@ export default function Login(): JSX.Element {
         })
       },
     })
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      liff.login()
+    } else {
+      ;(async () => {
+        const profile = await liff.getProfile()
+        toast.success('Line Profile : ' + profile.userId)
+      })()
+    }
+  }, [isLoggedIn, liff])
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
