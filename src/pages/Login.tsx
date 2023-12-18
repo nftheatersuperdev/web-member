@@ -57,6 +57,7 @@ export default function Login(): JSX.Element {
     })
 
   useEffect(() => {
+    toast.success('Liff IsLoggedId : ' + isLoggedIn)
     if (!isLoggedIn) {
       liff.login()
     } else {
