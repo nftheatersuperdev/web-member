@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-handler-names */
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
@@ -10,7 +11,7 @@ import { login } from 'services/auth'
 
 export default function Login(): JSX.Element {
   const history = useHistory()
-  const { isLoggedIn, liff } = useLiff()
+  const { error, liff, isLoggedIn } = useLiff()
   const useStyles = makeStyles({
     item: {
       padding: '0px 35px 0px 35px !important',
@@ -58,23 +59,15 @@ export default function Login(): JSX.Element {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      liff.login()
-    } else {
-      liff
-        .getProfile()
-        .then((profile) => {
-          // console.log(profile)
-          // document.getElementById('pictureUrl').src = profile.pictureUrl
-          // document.getElementById('userId').innerHTML = '<b>UserId:</b> ' + profile.userId
-          // document.getElementById('displayName').innerHTML =
-          //   '<b>DisplayName:</b> ' + profile.displayName
-          // document.getElementById('statusMessage').innerHTML =
-          //   '<b>StatusMessage:</b> ' + profile.statusMessage
-          // document.getElementById("getDecodedIDToken").innerHTML = '<b>Email:</b> ' + liff.getDecodedIDToken().email;
-        })
-        .catch((err) => console.error(err))
+      console.log('You must be logged in')
+      return
     }
-  }, [isLoggedIn, liff])
+
+    ;(async () => {
+      const profile = await liff.getProfile()
+      console.log(profile.displayName)
+    })()
+  }, [liff, isLoggedIn])
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
@@ -132,6 +125,11 @@ export default function Login(): JSX.Element {
               >
                 ลงชื่อเข้าใช้งาน
               </Button>
+            </Grid>
+            <Grid item xs={12} sm={12} className={classes.button}>
+              <button className="App-button" onClick={liff.login}>
+                Login
+              </button>
             </Grid>
           </Grid>
         </form>
