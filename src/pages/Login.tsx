@@ -158,6 +158,7 @@ export default function Login(): JSX.Element {
                 <TextField
                   type="text"
                   name="lineId"
+                  disabled={isLoggedIn}
                   id="verify_member__lineId"
                   label="ไลน์ไอดี"
                   placeholder="กรุณาระบุไลน์ไอดี"
