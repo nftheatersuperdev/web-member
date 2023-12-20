@@ -93,6 +93,19 @@ export default function Login(): JSX.Element {
     }
   }
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      return
+    }
+    ;(async () => {
+      const profile = await liff.getProfile()
+      toast.success('UseEffect Line Profile : ' + profile.userId)
+      formikVerifyCustomer.setFieldValue('lineId', profile.displayName)
+      formikVerifyCustomer.setFieldValue('lineUserId', profile.userId)
+      formikVerifyCustomer.submitForm()
+    })()
+  }, [formikVerifyCustomer, isLoggedIn, liff])
+
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
       <Paper elevation={24} variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
