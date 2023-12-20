@@ -66,17 +66,7 @@ export default function Login(): JSX.Element {
     },
     enableReinitialize: true,
     onSubmit: (values) => {
-      toast.promise(verifyMember(values.phoneNumber, values.lineId, values.lineUserId), {
-        loading: 'กำลังดำเนินการ',
-        success: () => {
-          formikVerifyCustomer.resetForm()
-          return 'ยืนยันสมาชิกสำเร็จ'
-        },
-        error: (err) => {
-          formikVerifyCustomer.resetForm()
-          return 'ยืนยันสมาชิกไม่สำเร็จ เนื่องจาก ' + err.data.message
-        },
-      })
+      toast.success(JSON.stringify(values))
     },
   })
   const handleLinkLine = () => {
