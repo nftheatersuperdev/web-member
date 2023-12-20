@@ -104,7 +104,7 @@ export default function Login(): JSX.Element {
       formikVerifyCustomer.setFieldValue('lineUserId', profile.userId)
       formikVerifyCustomer.submitForm()
     })()
-  }, [formikVerifyCustomer, isLoggedIn, liff])
+  }, [isLoggedIn, liff])
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
