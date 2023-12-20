@@ -12,14 +12,14 @@ export const getMemberProfile = async (): Promise<GetMemberProfileResponse> => {
 }
 
 export const verifyMember = async (
-  customerName: string,
   phoneNumber: string,
-  lineId: string
+  lineId: string,
+  lineUserId: string
 ): Promise<Response> => {
   const response = await AdminBffAPI.post('/v1/member/verify', {
-    customerName,
     phoneNumber,
     lineId,
+    lineUserId,
   })
     .then((response) => response.data)
     .catch((error) => {
@@ -66,5 +66,31 @@ export const getYoutubePackage = async (): Promise<GetYoutubePackageResponse> =>
   const response = await AdminBffAPI.get('/v1/member/youtube/packages').then(
     (response) => response.data
   )
+  return response.data
+}
+
+export const requestOtp = async (mobileNo: string): Promise<string> => {
+  const response = await AdminBffAPI.post('/v1/member/request-otp', {
+    mobileNo,
+  })
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error.response) {
+        throw error.response
+      }
+      throw error
+    })
+  return response.data
+}
+
+export const verifyOtp = async (pinCode: string, refCode: string): Promise<string> => {
+  const response = await AdminBffAPI.post('/v1/member/verify-otp', { pinCode, refCode })
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error.response) {
+        throw error.response
+      }
+      throw error
+    })
   return response.data
 }

@@ -8,6 +8,8 @@ import { makeStyles } from '@mui/styles'
 import { useEffect } from 'react'
 import { useLiff } from 'react-liff'
 import { login } from 'services/auth'
+import { GridTextField } from 'components/Styled'
+import { verifyMember } from 'services/member'
 
 export default function Login(): JSX.Element {
   const history = useHistory()
@@ -56,20 +58,40 @@ export default function Login(): JSX.Element {
         })
       },
     })
-
-  useEffect(() => {
+  const formikVerifyCustomer = useFormik({
+    initialValues: {
+      phoneNumber: '0972223456',
+      lineId: '',
+      lineUserId: '',
+    },
+    enableReinitialize: true,
+    onSubmit: (values) => {
+      toast.promise(verifyMember(values.phoneNumber, values.lineId, values.lineUserId), {
+        loading: 'กำลังดำเนินการ',
+        success: () => {
+          formikVerifyCustomer.resetForm()
+          return 'ยืนยันสมาชิกสำเร็จ'
+        },
+        error: (err) => {
+          formikVerifyCustomer.resetForm()
+          return 'ยืนยันสมาชิกไม่สำเร็จ เนื่องจาก ' + err.data.message
+        },
+      })
+    },
+  })
+  const handleLinkLine = () => {
     if (!isLoggedIn) {
-      console.log('You must be logged in')
-      return
+      liff.login()
+    } else {
+      (async () => {
+        const profile = await liff.getProfile()
+        toast.success('Line Profile : ' + profile.userId)
+        formikVerifyCustomer.setFieldValue('lineId', profile.displayName)
+        formikVerifyCustomer.setFieldValue('lineUserId', profile.userId)
+        formikVerifyCustomer.submitForm()
+      })()
     }
-
-    ;(async () => {
-      const profile = await liff.getProfile()
-      toast.success(profile.userId)
-      values.userId = profile.userId
-      console.log(profile.userId)
-    })()
-  }, [liff, isLoggedIn])
+  }
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
@@ -129,9 +151,34 @@ export default function Login(): JSX.Element {
               </Button>
             </Grid>
             <Grid item xs={12} sm={12} className={classes.button}>
-              <button className="App-button" onClick={liff.login}>
-                Login
-              </button>
+              <GridTextField item xs={8} sm={8}>
+                <TextField
+                  type="text"
+                  name="lineId"
+                  id="verify_member__lineId"
+                  label="ไลน์ไอดี"
+                  placeholder="กรุณาระบุไลน์ไอดี"
+                  fullWidth
+                  variant="outlined"
+                  InputLabelProps={{ shrink: true }}
+                  value={formikVerifyCustomer.values.lineId}
+                  onChange={({ target }) =>
+                    formikVerifyCustomer.setFieldValue('lineId', target.value)
+                  }
+                />
+              </GridTextField>
+              <GridTextField item xs={4} sm={4}>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    handleLinkLine()
+                  }}
+                  variant="contained"
+                  id="link_line_btn"
+                >
+                  เชื่อมต่อกับ Line
+                </Button>
+              </GridTextField>
             </Grid>
           </Grid>
         </form>
