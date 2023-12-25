@@ -23,6 +23,7 @@ export interface MemberProfile {
   verifiedStatus: string
   youtubeDayLeft: number
   youtubePackageName: string
+  lineId: string
   lineUserId: string
   isPhoneVerified: boolean
   isLineVerified: boolean

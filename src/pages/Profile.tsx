@@ -1,12 +1,16 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/forbid-dom-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/forbid-component-props */
-import { VisibilityOff, Visibility, ContentCopy } from '@mui/icons-material'
+import { VisibilityOff, Visibility, ContentCopy, ContactPage, Stars } from '@mui/icons-material'
 import {
   Backdrop,
   Button,
+  ButtonBase,
   Card,
   CircularProgress,
   Container,
-  Divider,
   Grid,
   IconButton,
   Paper,
@@ -34,14 +38,35 @@ export const Wrapper = styled(Card)`
   margin-top: 20px;
 `
 export const DisabledField = styled(TextField)`
+  background-color: rgba(0, 0, 0, 0.21);
   .MuiInputBase-input:disabled {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
+    -webkit-text-fill-color: white !important;
   }
   label.Mui-disabled {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
   }
+`
+const ImageButton = styled(ButtonBase)`
+  position: 'relative',
+  height: 200,
+`
+
+export const ImageSrc = styled('span')`
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center 40%',
+`
+
+export const Divider = styled('div')`
+  border: '1px solid gray',
+  borderBottom: '1px',
+  borderLeft: '1px',
+  borderRight: '1px',  
 `
 
 export default function Profile(): JSX.Element {
@@ -62,7 +87,6 @@ export default function Profile(): JSX.Element {
   const [openRewardDialog, setOpenRewardDialog] = useState(false)
   const [openNetflixPackageDialog, setOpenNetflixPackageDialog] = useState(false)
   const [openYoutubePackageDialog, setOpenYoutubePackageDialog] = useState(false)
-  const [lineUserIdParam, setLineUserIdParam] = useState<string>('')
   const [open, setOpen] = useState(true)
   const {
     data: customerProfile,
@@ -93,18 +117,6 @@ export default function Profile(): JSX.Element {
       },
     })
   }
-  const verifyMember = () => {
-    if (!isLoggedIn) {
-      liff.login()
-    } else {
-      ;(async () => {
-        const profile = await liff.getProfile()
-        toast.success('Line Profile : ' + profile.userId)
-        setLineUserIdParam(profile.userId)
-        setOpenVerifyMemberDialog(true)
-      })()
-    }
-  }
 
   useEffect(() => {
     refetch()
@@ -124,150 +136,403 @@ export default function Profile(): JSX.Element {
       )}
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <br />
+        <Grid
+          spacing={3}
+          container
+          xs={12}
+          sm={12}
+          style={{ display: 'grid', placeItems: 'center' }}
+        >
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            style={{ fontFamily: 'Krona One', fontSize: '22px', fontWeight: '400', color: 'white' }}
+          >
+            NF THEATER
+          </Typography>
+        </Grid>
+        <br />
+        <Grid container spacing={3}>
+          <Grid item xs={1} sm={1}>
+            <IconButton>
+              <ContactPage style={{ color: 'white' }} />
+            </IconButton>
+          </Grid>
+          <Grid item xs={3} sm={3}>
+            <Typography variant="h5" align="left">
+              <div style={{ color: 'white', fontSize: '16px' }}>ไอดี</div>
+              <div style={{ color: 'yellow', fontSize: '16px', fontWeight: 'bolder' }}>
+                {profile?.userId}
+              </div>
+            </Typography>
+          </Grid>
+          <Grid item xs={4} sm={4}>
+            <img src="./images/profile.png" />
+          </Grid>
+          <Grid item xs={1} sm={1}>
+            <IconButton>
+              <Stars style={{ color: 'white' }} />
+            </IconButton>
+          </Grid>
+          <Grid item xs={3} sm={3}>
+            <Typography variant="h5" align="left">
+              <div style={{ color: 'white', fontSize: '16px' }}>แต้มแนะนำเพื่อน</div>
+              <div style={{ color: 'yellow', fontSize: '16px', fontWeight: 'bolder' }}>
+                {profile?.memberPoint}
+              </div>
+            </Typography>
+          </Grid>
+        </Grid>
         <br />
         <Paper
           elevation={24}
           variant="outlined"
-          sx={{
-            my: { xs: 3, md: 6 },
-            p: { xs: 2, md: 3 },
+          style={{
+            backgroundColor: 'transparent',
+            background: 'linear-gradient(212.22deg, #FF0000 1.6%, #3A0000 100%)',
+            borderRadius: '30px',
           }}
         >
-          <Typography component="h1" variant="h4" align="center">
-            ข้อมูลสมาชิก
-          </Typography>
-          <br />
-          <br />
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={12}>
-              <Typography variant="h5" align="left">
-                ไอดี: {profile?.userId}
+            <br />
+            <br />
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{ marginRight: '15px' }}
+              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+            >
+              <table style={{ width: '100%' }}>
+                <tr>
+                  <td rowSpan={3} style={{ verticalAlign: 'top' }}>
+                    <img style={{ width: '60px' }} src="/logo-netflix.png" />
+                  </td>
+                  <td>
+                    <Typography
+                      variant="h5"
+                      align="left"
+                      style={{
+                        fontSize: '22px',
+                        fontWeight: '400',
+                        color: 'white',
+                      }}
+                    >
+                      แพ็คเกจ NETFLIX <br /> {profile?.netflixPackageName}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography
+                      variant="h5"
+                      align="left"
+                      style={{
+                        fontSize: '22px',
+                        fontWeight: '400',
+                        color: 'white',
+                        textAlign: 'right',
+                      }}
+                    >
+                      จำนวนวันเหลือ <br /> {profile?.netflixDayLeft}
+                    </Typography>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={2}>
+                    <DisabledField
+                      type="text"
+                      style={{ WebkitTextFillColor: 'white !important' }}
+                      fullWidth
+                      disabled
+                      variant="outlined"
+                      value={'Email : ' + profile?.netflixEmail}
+                      InputProps={{
+                        endAdornment: (
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() =>
+                              copyContent(`${profile?.netflixEmail}`, `${profile?.netflixPassword}`)
+                            }
+                            edge="end"
+                          >
+                            <ContentCopy style={{ color: 'white' }} />
+                          </IconButton>
+                        ),
+                      }}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={2}>
+                    <DisabledField
+                      type={showPassword ? 'text' : 'password'}
+                      fullWidth
+                      disabled
+                      variant="outlined"
+                      value={'Password : ' + profile?.netflixPassword}
+                      InputProps={{
+                        endAdornment: (
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            edge="end"
+                          >
+                            {showPassword ? (
+                              <VisibilityOff style={{ color: 'white' }} />
+                            ) : (
+                              <Visibility style={{ color: 'white' }} />
+                            )}
+                          </IconButton>
+                        ),
+                      }}
+                    />
+                  </td>
+                </tr>
+              </table>
+            </Grid>
+            {/* <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{ border: '1px solid white' }}
+              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+            >
+              <Typography
+                variant="h5"
+                align="left"
+                style={{
+                  fontSize: '22px',
+                  fontWeight: '400',
+                  color: 'white',
+                }}
+              >
+                แพ็คเกจ NETFLIX: {profile?.netflixPackageName}
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={12}>
-              <Typography variant="h5" align="left">
-                คะแนนสะสม​: {profile?.memberPoint} คะแนน
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{ border: '1px solid white' }}
+              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+            >
+              <Typography
+                variant="h5"
+                align="left"
+                style={{
+                  fontSize: '22px',
+                  fontWeight: '400',
+                  color: 'white',
+                }}
+              >
+                จำนวนวันเหลือ: {profile?.netflixDayLeft}
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={12}>
-              {profile?.netflixPackageName === null ? (
-                ''
-              ) : (
-                <Typography variant="h5" align="left">
-                  แพ็คเกจ Netflix: {profile?.netflixPackageName}
-                </Typography>
-              )}
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              style={{ border: '1px solid white' }}
+              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+            >
+              <Typography
+                variant="h5"
+                align="left"
+                style={{
+                  fontSize: '22px',
+                  fontWeight: '400',
+                  color: 'white',
+                }}
+              >
+                อีเมลล์ NETFLIX
+              </Typography>
             </Grid>
-            <Grid item xs={12} sm={12}>
-              {profile?.netflixPackageName === null ? (
-                ''
-              ) : (
-                <Typography variant="h5" align="left">
-                  จำนวนวันเหลือ: {profile?.netflixDayLeft}
-                </Typography>
-              )}
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              style={{ border: '1px solid white' }}
+              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+            >
+              <DisabledField
+                type="text"
+                fullWidth
+                disabled
+                variant="outlined"
+                value={profile?.netflixEmail}
+                InputProps={{
+                  endAdornment: (
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() =>
+                        copyContent(`${profile?.netflixEmail}`, `${profile?.netflixPassword}`)
+                      }
+                      edge="end"
+                    >
+                      <ContentCopy />
+                    </IconButton>
+                  ),
+                }}
+              />
             </Grid>
-            <Grid item xs={6} sm={6}>
-              {profile?.netflixPackageName === null ? (
-                ''
-              ) : (
-                <Typography variant="h5" align="left">
-                  อีเมลล์ Netflix
-                </Typography>
-              )}
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+            >
+              <Typography
+                variant="h5"
+                align="left"
+                style={{
+                  fontSize: '22px',
+                  fontWeight: '400',
+                  color: 'white',
+                }}
+              >
+                รหัสผ่าน NETFLIX
+              </Typography>
             </Grid>
-            <Grid item xs={6} sm={6}>
-              {profile?.netflixPackageName === null ? (
-                ''
-              ) : (
-                <DisabledField
-                  type="text"
-                  fullWidth
-                  disabled
-                  variant="outlined"
-                  value={profile?.netflixEmail}
-                  InputProps={{
-                    endAdornment: (
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={() =>
-                          copyContent(`${profile?.netflixEmail}`, `${profile?.netflixPassword}`)
-                        }
-                        edge="end"
-                      >
-                        <ContentCopy />
-                      </IconButton>
-                    ),
-                  }}
-                />
-              )}
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+            >
+              <DisabledField
+                type={showPassword ? 'text' : 'password'}
+                fullWidth
+                disabled
+                variant="outlined"
+                value={profile?.netflixPassword}
+                InputProps={{
+                  endAdornment: (
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  ),
+                }}
+              />
+            </Grid> */}
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{ display: 'grid', alignItems: 'center', justifyItems: 'center' }}
+            >
+              <div
+                style={{
+                  width: '80%',
+                  border: '1px solid white',
+                  borderBottom: '1px',
+                  borderLeft: '1px',
+                  borderRight: '1px',
+                }}
+              />
             </Grid>
-            <Grid item xs={6} sm={6}>
-              {profile?.netflixPackageName === null ? (
-                ''
-              ) : (
-                <Typography variant="h5" align="left">
-                  รหัสผ่าน Netflix
-                </Typography>
-              )}
+            <br />
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              style={{ marginRight: '15px' }}
+              className={profile?.youtubePackageName === null ? classes.hideObject : ''}
+            >
+              <table style={{ width: '100%' }}>
+                <tr>
+                  <td style={{ verticalAlign: 'top' }}>
+                    <img
+                      style={{
+                        marginLeft: '10px',
+                        width: '45px',
+                      }}
+                      src="/logo-youtube.png"
+                    />
+                  </td>
+                  <td>
+                    <Typography
+                      variant="h5"
+                      align="left"
+                      style={{
+                        fontSize: '22px',
+                        fontWeight: '400',
+                        color: 'white',
+                      }}
+                    >
+                      แพ็คเกจ YOUTUBE <br /> {profile?.youtubePackageName}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography
+                      variant="h5"
+                      align="left"
+                      style={{
+                        fontSize: '22px',
+                        fontWeight: '400',
+                        color: 'white',
+                        textAlign: 'right',
+                      }}
+                    >
+                      จำนวนวันเหลือ <br /> {profile?.youtubeDayLeft}
+                    </Typography>
+                  </td>
+                </tr>
+              </table>
+              {/* <Typography
+                variant="h5"
+                align="left"
+                style={{
+                  fontSize: '22px',
+                  fontWeight: '400',
+                  color: 'white',
+                }}
+              >
+                แพ็คเกจ YOUTUBE
+              </Typography>
             </Grid>
-            <Grid item xs={6} sm={6}>
-              {profile?.netflixPackageName === null ? (
-                ''
-              ) : (
-                <DisabledField
-                  type={showPassword ? 'text' : 'password'}
-                  fullWidth
-                  disabled
-                  variant="outlined"
-                  value={profile?.netflixPassword}
-                  InputProps={{
-                    endAdornment: (
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    ),
-                  }}
-                />
-              )}
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              className={profile?.youtubePackageName === null ? classes.hideObject : ''}
+            >
+              <DisabledField
+                type="text"
+                fullWidth
+                disabled
+                variant="outlined"
+                value={profile?.youtubePackageName}
+              />
             </Grid>
-            <Divider style={{ background: 'black' }} variant="middle" />
-            <Grid item xs={6} sm={6}>
-              {profile?.youtubePackageName === null ? (
-                ''
-              ) : (
-                <Typography variant="h5" align="left">
-                  แพ็คเกจ Youtube
-                </Typography>
-              )}
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              {profile?.youtubePackageName === null ? (
-                ''
-              ) : (
-                <DisabledField
-                  type="text"
-                  fullWidth
-                  disabled
-                  variant="outlined"
-                  value={profile?.youtubePackageName}
-                />
-              )}
-            </Grid>
-            <Grid item xs={6} sm={6}>
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              className={profile?.youtubePackageName === null ? classes.hideObject : ''}
+            >
               <Typography
                 className={profile?.youtubePackageName === null ? classes.hideObject : ''}
                 variant="h5"
                 align="left"
+                style={{
+                  fontSize: '22px',
+                  fontWeight: '400',
+                  color: 'white',
+                }}
               >
                 จำนวนวันเหลือ
               </Typography>
             </Grid>
-            <Grid item xs={6} sm={6}>
+            <Grid
+              item
+              xs={6}
+              sm={6}
+              className={profile?.youtubePackageName === null ? classes.hideObject : ''}
+            >
               <DisabledField
                 type="text"
                 className={profile?.youtubePackageName === null ? classes.hideObject : ''}
@@ -275,86 +540,121 @@ export default function Profile(): JSX.Element {
                 disabled
                 variant="outlined"
                 value={profile?.youtubeDayLeft}
-              />
+              /> */}
             </Grid>
             <Grid item xs={12} sm={12} />
           </Grid>
         </Paper>
-        <Paper elevation={24} variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Paper
+          elevation={24}
+          variant="outlined"
+          style={{ backgroundColor: 'transparent' }}
+          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+        >
           <Grid container spacing={3} justifyContent="center" alignItems="center">
             <Grid item xs={6} sm={6}>
-              {profile?.netflixPackageName === null ? (
-                <Button
-                  color="primary"
-                  href="https://line.me/R/ti/p/@vrm3078o"
-                  target="blank"
-                  fullWidth
-                  size="large"
-                  variant="contained"
-                >
-                  สมัครแพ็คเกจ Netflix
-                </Button>
-              ) : (
-                <Button
-                  color="primary"
-                  onClick={() => setOpenNetflixPackageDialog(true)}
-                  fullWidth
-                  size="large"
-                  variant="contained"
-                >
-                  ต่ออายุแพ็คเกจ Netflix
-                </Button>
-              )}
-            </Grid>
-            <Grid item xs={6} sm={6}>
               {profile?.youtubePackageName === null ? (
-                <Button
-                  color="primary"
-                  fullWidth
-                  href="https://line.me/R/ti/p/@vrm3078o"
-                  target="blank"
-                  size="large"
-                  variant="contained"
-                >
-                  สมัครแพ็คเกจ Youtube
-                </Button>
+                <a href="https://line.me/R/ti/p/@vrm3078o" target="blank">
+                  <img style={{ width: '100%' }} src="./images/extend_youtube.jpg" />
+                </a>
               ) : (
-                <Button
-                  color="primary"
-                  fullWidth
+                // <Button
+                //   color="primary"
+                //   fullWidth
+                //   href="https://line.me/R/ti/p/@vrm3078o"
+                //   target="blank"
+                //   size="large"
+                //   variant="contained"
+                // >
+                //   สมัครแพ็คเกจ Youtube
+                // </Button>
+                <img
+                  style={{ width: '100%' }}
+                  src="./images/extend_youtube.jpg"
                   onClick={() => setOpenYoutubePackageDialog(true)}
-                  size="large"
-                  variant="contained"
-                >
-                  ต่ออายุแพ็คเกจ Youtube
-                </Button>
+                />
+                // <Button
+                //   color="primary"
+                //   fullWidth
+                //   onClick={() => setOpenYoutubePackageDialog(true)}
+                //   size="large"
+                //   variant="contained"
+                // >
+                //   ต่ออายุแพ็คเกจ Youtube
+                // </Button>
               )}
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Button
+              {profile?.netflixPackageName === null ? (
+                <a href="https://line.me/R/ti/p/@vrm3078o" target="blank">
+                  <img style={{ width: '100%' }} src="./images/extend_netflix.jpg" />
+                </a>
+              ) : (
+                // <Button
+                //   color="primary"
+                //   href="https://line.me/R/ti/p/@vrm3078o"
+                //   target="blank"
+                //   fullWidth
+                //   size="large"
+                //   variant="contained"
+                // >
+                //   สมัครแพ็คเกจ Netflix
+                // </Button>
+                <img
+                  style={{ width: '100%' }}
+                  src="./images/extend_netflix.jpg"
+                  onClick={() => setOpenNetflixPackageDialog(true)}
+                />
+                // <Button
+                //   color="primary"
+                //   onClick={() => setOpenNetflixPackageDialog(true)}
+                //   fullWidth
+                //   size="large"
+                //   variant="contained"
+                // >
+                //   ต่ออายุแพ็คเกจ Netflix
+                // </Button>
+              )}
+            </Grid>
+            <Grid item xs={6} sm={6}>
+              <img
+                style={{ width: '100%' }}
+                src="./images/verify_member.jpg"
+                onClick={() => setOpenVerifyMemberDialog(true)}
+              />
+              {/* <Button
                 color="primary"
                 fullWidth
                 size="large"
                 variant="contained"
-                // onClick={() => setOpenVerifyMemberDialog(true)}
-                onClick={() => verifyMember()}
+                onClick={() => setOpenVerifyMemberDialog(true)}
+                // onClick={() => verifyMember()}
               >
                 ยืนยันสมาชิก
-              </Button>
+              </Button> */}
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Button
+              <img
+                style={{ width: '100%' }}
+                src="./images/reward.jpg"
+                onClick={() => setOpenRewardDialog(true)}
+              />
+              {/* <Button
                 color="primary"
                 fullWidth
                 size="large"
                 variant="contained"
-                onClick={() => setOpenRewardDialog(true)}
               >
                 ลุ้นรางวัล
-              </Button>
+              </Button> */}
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Button
+              <img
+                style={{ width: '100%' }}
+                src="./images/inviting.jpg"
+                onClick={() => setOpenVerifySuccessDialog(true)}
+              />
+              {/* <Button
                 color="primary"
                 fullWidth
                 href="https://lin.ee/AmPbEF2"
@@ -363,10 +663,13 @@ export default function Profile(): JSX.Element {
                 variant="contained"
               >
                 แก้ไขปัญหาการใช้งาน
-              </Button>
+              </Button> */}
             </Grid>
             <Grid item xs={6} sm={6}>
-              <Button
+              <a href="https://lin.ee/AmPbEF2" target="blank">
+                <img style={{ width: '100%' }} src="./images/troubleshoot.jpg" />
+              </a>
+              {/* <Button
                 color="primary"
                 fullWidth
                 size="large"
@@ -374,16 +677,19 @@ export default function Profile(): JSX.Element {
                 onClick={() => setOpenVerifySuccessDialog(true)}
               >
                 ชวนเพื่อนเข้าตี้ รับแต้มฟรี
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
         </Paper>
         <Button
-          color="primary"
           fullWidth
           size="large"
           onClick={handleLogout}
-          variant="contained"
+          style={{
+            border: '1px solid rgba(62, 72, 94, 1)',
+            borderRadius: '57px',
+            color: 'rgba(85, 92, 109, 1)',
+          }}
           id="logout_btn"
         >
           ออกจากระบบ
@@ -391,8 +697,14 @@ export default function Profile(): JSX.Element {
       </Container>
       <VerifyMemberDialog
         open={openVerifyMemberDialog}
-        lineId={lineUserIdParam}
-        onClose={() => setOpenVerifyMemberDialog(false)}
+        isLineVerified={profile?.isLineVerified ? profile.isLineVerified : false}
+        lineId={profile?.lineId ? profile.lineId : ''}
+        isPhoneVerified={profile?.isPhoneVerified ? profile.isPhoneVerified : false}
+        phoneNumber={profile?.phoneNumber ? profile.phoneNumber : ''}
+        onClose={() => {
+          refetch()
+          setOpenVerifyMemberDialog(false)
+        }}
         onSuccess={() => {
           setOpenVerifyMemberDialog(false)
           setOpenVerifySuccessDialog(true)

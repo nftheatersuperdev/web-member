@@ -14,7 +14,7 @@ const Main = styled.main<{ $isPublic?: boolean }>`
   display: flex;
   flex: 1 1 auto;
   padding: 20px;
-  background-image:  url('/bg.jpg');
+  background-image: linear-gradient(rgba(39, 8, 36, 1), rgba(7, 14, 23, 1));
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -78,7 +78,6 @@ function PrivateRoute({
 
     return (
       <React.Fragment>
-      <Navbar />
         <Main>
           {/* @ts-expect-error TODO */}
           <br/ >
