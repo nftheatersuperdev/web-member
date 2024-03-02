@@ -233,7 +233,7 @@ export default function Profile(): JSX.Element {
                         textAlign: 'right',
                       }}
                     >
-                      จำนวนวันเหลือ <br /> {profile?.netflixDayLeft}
+                      เหลือวันใช้งาน <br /> {profile?.netflixDayLeft}
                     </Typography>
                   </td>
                 </tr>
@@ -477,7 +477,7 @@ export default function Profile(): JSX.Element {
                         textAlign: 'right',
                       }}
                     >
-                      จำนวนวันเหลือ <br /> {profile?.youtubeDayLeft}
+                      เหลือวันใช้งาน <br /> {profile?.youtubeDayLeft}
                     </Typography>
                   </td>
                 </tr>
@@ -555,7 +555,7 @@ export default function Profile(): JSX.Element {
             <Grid item xs={6} sm={6}>
               {profile?.youtubePackageName === null ? (
                 <a href="https://line.me/R/ti/p/@vrm3078o" target="blank">
-                  <img style={{ width: '100%' }} src="./images/extend_youtube.jpg" />
+                  <img style={{ width: '100%' }} src="./images/NF1.png" />
                 </a>
               ) : (
                 // <Button
@@ -570,7 +570,7 @@ export default function Profile(): JSX.Element {
                 // </Button>
                 <img
                   style={{ width: '100%' }}
-                  src="./images/extend_youtube.jpg"
+                  src="./images/NF1.png"
                   onClick={() => setOpenYoutubePackageDialog(true)}
                 />
                 // <Button
@@ -587,7 +587,7 @@ export default function Profile(): JSX.Element {
             <Grid item xs={6} sm={6}>
               {profile?.netflixPackageName === null ? (
                 <a href="https://line.me/R/ti/p/@vrm3078o" target="blank">
-                  <img style={{ width: '100%' }} src="./images/extend_netflix.jpg" />
+                  <img style={{ width: '100%' }} src="./images/NF2.png" />
                 </a>
               ) : (
                 // <Button
@@ -602,7 +602,7 @@ export default function Profile(): JSX.Element {
                 // </Button>
                 <img
                   style={{ width: '100%' }}
-                  src="./images/extend_netflix.jpg"
+                  src="./images/NF2.png"
                   onClick={() => setOpenNetflixPackageDialog(true)}
                 />
                 // <Button
@@ -619,7 +619,7 @@ export default function Profile(): JSX.Element {
             <Grid item xs={6} sm={6}>
               <img
                 style={{ width: '100%' }}
-                src="./images/verify_member.jpg"
+                src="./images/NF3.png"
                 onClick={() => setOpenVerifyMemberDialog(true)}
               />
               {/* <Button
@@ -636,7 +636,7 @@ export default function Profile(): JSX.Element {
             <Grid item xs={6} sm={6}>
               <img
                 style={{ width: '100%' }}
-                src="./images/reward.jpg"
+                src="./images/NF4.png"
                 onClick={() => setOpenRewardDialog(true)}
               />
               {/* <Button
@@ -651,7 +651,7 @@ export default function Profile(): JSX.Element {
             <Grid item xs={6} sm={6}>
               <img
                 style={{ width: '100%' }}
-                src="./images/inviting.jpg"
+                src="./images/NF5.png"
                 onClick={() => setOpenVerifySuccessDialog(true)}
               />
               {/* <Button
@@ -667,7 +667,7 @@ export default function Profile(): JSX.Element {
             </Grid>
             <Grid item xs={6} sm={6}>
               <a href="https://lin.ee/AmPbEF2" target="blank">
-                <img style={{ width: '100%' }} src="./images/troubleshoot.jpg" />
+                <img style={{ width: '100%' }} src="./images/NF6.png" />
               </a>
               {/* <Button
                 color="primary"

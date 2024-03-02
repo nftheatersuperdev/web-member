@@ -8,21 +8,68 @@ import { makeStyles } from '@mui/styles'
 import { useEffect } from 'react'
 import { useLiff } from 'react-liff'
 import { login } from 'services/auth'
-import { GridTextField } from 'components/Styled'
-import { verifyMember } from 'services/member'
 
 export default function Login(): JSX.Element {
   const history = useHistory()
   const { error, liff, isLoggedIn } = useLiff()
   const useStyles = makeStyles({
+    paper: {
+      borderRadius: '25px',
+      border: '2px solid transparent',
+      background:
+        'linear-gradient(212.22deg, #FF0000 1.6%, #3A0000 100%) padding-box, linear-gradient(180deg, rgba(255, 254, 254, 0) 8.33%, rgba(255, 0, 0, 0.25) 100%) border-box',
+      boxShadow: '0px 36px 51px 0px #00000094',
+    },
     item: {
       padding: '0px 35px 0px 35px !important',
     },
+    customInputTextField: {
+      '& .MuiOutlinedInput-root': {
+        borderRadius: '25px',
+        border: '0px solid',
+        backgroundColor: '#00000033',
+      },
+      '& .MuiInputLabel-outlined': {
+        marginTop: '-10px',
+        transform: 'translate(14px, -6px) scale(0.75)',
+        color: 'white',
+        padding: '10px 20px 10px 20px',
+        background: '#FF0000',
+        border: '2px solid #FF0000',
+        borderRadius: '20px',
+      },
+      '& .MuiOutlinedInput-input': {
+        color: '#FFE600',
+        fontFamily: 'Prompt',
+        fontSize: '32px',
+        fontWeight: 'bold',
+      },
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        marginTop: '-10px',
+        color: 'white',
+        padding: '10px 20px 10px 20px',
+        background: '#FF0000',
+        border: '2px solid #FF0000',
+        borderRadius: '20px',
+      },
+    },
     button: {
+      textAlign: 'center',
       padding: '35px 35px 35px 35px !important',
     },
+    paddingZero: {
+      padding: '0px !important',
+      textAlign: 'center',
+    },
+    stickToBottom: {
+      position: 'relative',
+    },
     loginBtn: {
-      backgroundColor: '#E54E3D',
+      width: '199px',
+      fontFamily: 'Prompt',
+      fontSize: '20px',
+      borderRadius: '38px',
+      background: 'linear-gradient(185.98deg, #FFA928 3.55%, #922D01 100%)',
       color: '#ffffff',
       '&:hover': {
         // backgroundColor: '#000000',
@@ -98,11 +145,61 @@ export default function Login(): JSX.Element {
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-      <Paper elevation={24} variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-        <br />
-        <Typography component="h1" variant="h4" align="center">
-          เข้าสู่ระบบ NF Theater
-        </Typography>
+      <br />
+      <Typography
+        component="h1"
+        variant="h4"
+        align="center"
+        style={{ fontFamily: 'Krona One', fontSize: '22px', fontWeight: '400', color: 'white' }}
+      >
+        NF THEATER
+      </Typography>
+      <br />
+      <br />
+      <Grid container spacing={1}>
+        <Grid item xs={6} sm={6} className={classes.paddingZero}>
+          <img src="./images/login_icon_img.png" />
+        </Grid>
+        <Grid item xs={6} sm={6} className={(classes.paddingZero, classes.stickToBottom)}>
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            style={{
+              fontFamily: 'Prompt',
+              fontSize: '32px',
+              fontWeight: 'bold',
+              color: '#FFE600',
+              position: 'absolute',
+              bottom: '55px',
+            }}
+          >
+            เข้าสู่ระบบ
+          </Typography>
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            style={{
+              fontFamily: 'Prompt',
+              fontSize: '18px',
+              fontWeight: '400',
+              color: 'white',
+              position: 'absolute',
+              bottom: '10px',
+            }}
+          >
+            สำหรับสมาชิกกรุณา <br />
+            เข้าสู่ระบบด้านล่างนี้
+          </Typography>
+        </Grid>
+      </Grid>
+      <Paper
+        className={classes.paper}
+        elevation={24}
+        variant="outlined"
+        sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+      >
         <br />
         <br />
         <form onSubmit={handleSubmit}>
@@ -110,11 +207,13 @@ export default function Login(): JSX.Element {
             <Grid item xs={12} sm={12} className={classes.item}>
               <TextField
                 error={Boolean(touched.userId && errors.userId)}
+                className={classes.customInputTextField}
                 fullWidth
                 helperText={touched.userId && errors.userId}
-                label="รหัสลูกค้า"
+                label="ยูสเซอร์เนม"
                 margin="normal"
                 name="userId"
+                autoComplete="off"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 type="text"
@@ -126,6 +225,7 @@ export default function Login(): JSX.Element {
             <Grid item xs={12} sm={12} className={classes.item}>
               <TextField
                 error={Boolean(touched.password && errors.password)}
+                className={classes.customInputTextField}
                 fullWidth
                 helperText={touched.password && errors.password}
                 label="รหัสผ่าน"
@@ -150,39 +250,8 @@ export default function Login(): JSX.Element {
                 variant="contained"
                 id="login__signin_btn"
               >
-                ลงชื่อเข้าใช้งาน
+                เข้าสู่ระบบ
               </Button>
-            </Grid>
-            <Grid item xs={12} sm={12} className={classes.button}>
-              <GridTextField item xs={8} sm={8}>
-                <TextField
-                  type="text"
-                  name="lineId"
-                  disabled={isLoggedIn}
-                  id="verify_member__lineId"
-                  label="ไลน์ไอดี"
-                  placeholder="กรุณาระบุไลน์ไอดี"
-                  fullWidth
-                  variant="outlined"
-                  InputLabelProps={{ shrink: true }}
-                  value={formikVerifyCustomer.values.lineId}
-                  onChange={({ target }) =>
-                    formikVerifyCustomer.setFieldValue('lineId', target.value)
-                  }
-                />
-              </GridTextField>
-              <GridTextField item xs={4} sm={4}>
-                <Button
-                  color="primary"
-                  onClick={() => {
-                    handleLinkLine()
-                  }}
-                  variant="contained"
-                  id="link_line_btn"
-                >
-                  เชื่อมต่อกับ Line
-                </Button>
-              </GridTextField>
             </Grid>
           </Grid>
         </form>
