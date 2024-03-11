@@ -153,30 +153,46 @@ export default function Profile(): JSX.Element {
           </Typography>
         </Grid>
         <br />
+        <br />
+        <br />
+        <br />
         <Grid container spacing={3}>
-          <Grid item xs={1} sm={1}>
-            <IconButton>
-              <ContactPage style={{ color: 'white' }} />
-            </IconButton>
+          <Grid item xs={1} sm={1} style={{ position: 'relative' }}>
+            <img
+              src="./images/icon_id.png"
+              style={{ position: 'absolute', bottom: '5px', width: '35px' }}
+            />
           </Grid>
-          <Grid item xs={3} sm={3}>
-            <Typography variant="h5" align="left">
+          <Grid item xs={3} sm={3} style={{ position: 'relative' }}>
+            <Typography
+              variant="h5"
+              align="left"
+              style={{ position: 'absolute', bottom: '0', paddingLeft: '10px' }}
+            >
               <div style={{ color: 'white', fontSize: '16px' }}>ไอดี</div>
               <div style={{ color: 'yellow', fontSize: '16px', fontWeight: 'bolder' }}>
                 {profile?.userId}
               </div>
             </Typography>
           </Grid>
-          <Grid item xs={4} sm={4}>
-            <img src="./images/profile.png" />
+          <Grid item xs={4} sm={4} style={{ position: 'relative' }}>
+            <img
+              src="./images/profile.png"
+              style={{ position: 'absolute', left: '40px', top: '-36px' }}
+            />
           </Grid>
-          <Grid item xs={1} sm={1}>
-            <IconButton>
-              <Stars style={{ color: 'white' }} />
-            </IconButton>
+          <Grid item xs={1} sm={1} style={{ position: 'relative' }}>
+            <img
+              src="./images/icon_point.png"
+              style={{ position: 'absolute', bottom: '5px', width: '35px' }}
+            />
           </Grid>
-          <Grid item xs={3} sm={3}>
-            <Typography variant="h5" align="left">
+          <Grid item xs={3} sm={3} style={{ position: 'relative' }}>
+            <Typography
+              variant="h5"
+              align="left"
+              style={{ position: 'absolute', bottom: '0', paddingLeft: '10px' }}
+            >
               <div style={{ color: 'white', fontSize: '16px' }}>แต้มแนะนำเพื่อน</div>
               <div style={{ color: 'yellow', fontSize: '16px', fontWeight: 'bolder' }}>
                 {profile?.memberPoint}
@@ -189,12 +205,15 @@ export default function Profile(): JSX.Element {
           elevation={24}
           variant="outlined"
           style={{
+            backgroundImage: `url('./images/noname.png')`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain',
             backgroundColor: 'transparent',
-            background: 'linear-gradient(212.22deg, #FF0000 1.6%, #3A0000 100%)',
-            borderRadius: '30px',
           }}
         >
           <Grid container spacing={3}>
+            <br />
+            <br />
             <br />
             <br />
             <Grid

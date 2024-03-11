@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/forbid-component-props */
 /* eslint-disable jsx-a11y/no-autofocus */
 import { useState } from 'react'
@@ -8,9 +9,10 @@ import {
   Grid,
   TextField,
   Button,
-  DialogActions,
   IconButton,
+  Typography,
 } from '@mui/material'
+import styled from 'styled-components'
 import VerifiedIcon from '@mui/icons-material/Verified'
 import { useFormik } from 'formik'
 import { useLiff } from 'react-liff'
@@ -20,6 +22,27 @@ import { GridTextField } from 'components/Styled'
 import { requestOtp, verifyMember, verifyOtp } from 'services/member'
 import OTPInput from 'components/OTPInput'
 import './App.css'
+
+const CustomerDialogTitle = styled(DialogTitle)`
+  font-weight: 700 !important;
+  text-align: center !important;
+  font-size: 28px !important;
+  color: #fff;
+  border: 1px solid black;
+  width: 288px;
+  height: 66px;
+  margin-left: 150px !important;
+  border-radius: 0px 0px 80px 80px;
+  background: linear-gradient(212.22deg, #ff0000 1.6%, #3a0000 100%);
+`
+const CustomerDialog = styled(Dialog)`
+  .MuiPaper-root { 
+    border-radius: 25px;
+    border: 2px solid black;
+    background: linear-gradient(212.22deg, #FF0000 1.6%, #3A0000 100%);
+    linear-gradient(180deg, rgba(255, 254, 254, 0) 8.33%, rgba(255, 0, 0, 0.25) 100%);
+  }
+`
 
 interface VerifyMemberDialogProps {
   open: boolean
@@ -35,6 +58,55 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
   const useStyles = makeStyles({
     hideObject: {
       display: 'none',
+    },
+    verifyTextBox: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    button: {
+      fontFamily: 'Prompt',
+      fontSize: '18px',
+      borderRadius: '38px',
+      background: 'linear-gradient(185.98deg, #FFA928 3.55%, #922D01 100%)',
+      color: '#ffffff',
+      '&:hover': {
+        backgroundColor: '#D1322F',
+        opacity: [0.9, 0.8, 0.7],
+      },
+    },
+    customInputTextField: {
+      '& .Mui-disabled': {
+        '-webkit-text-fill-color': 'rgba(254, 254, 0, 1)',
+      },
+      '& .MuiOutlinedInput-root': {
+        borderRadius: '25px',
+        border: '0px solid',
+        backgroundColor: '#00000033',
+      },
+      '& .MuiInputLabel-outlined': {
+        marginTop: '-10px',
+        transform: 'translate(14px, -6px) scale(0.75)',
+        color: 'white',
+        padding: '10px 20px 10px 20px',
+        background: '#FF0000',
+        border: '2px solid #FF0000',
+        borderRadius: '20px',
+      },
+      '& .MuiOutlinedInput-input': {
+        color: '#FFE600',
+        fontFamily: 'Prompt',
+        fontSize: '32px',
+        fontWeight: 'bold',
+      },
+      '& .MuiInputLabel-outlined.MuiInputLabel-shrink': {
+        marginTop: '-10px',
+        color: 'white',
+        padding: '10px 20px 10px 20px',
+        background: '#FF0000',
+        border: '2px solid #FF0000',
+        borderRadius: '20px',
+      },
     },
   })
   const { isLoggedIn, liff } = useLiff()
@@ -114,12 +186,50 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
   })
 
   return (
-    <Dialog open={open} fullWidth aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">ยืนยันสมาชิก</DialogTitle>
+    <CustomerDialog open={open} fullWidth aria-labelledby="form-dialog-title">
+      <CustomerDialogTitle id="form-dialog-title">
+        ยืนยันสมาชิก
+        <img
+          src="./images/button_close.png"
+          onClick={() => {
+            setEnableRequestOTPBtn(false)
+            setEnableLinkLineBtn(false)
+            setShowInputOTP(false)
+            setEnableVerifyOTPBtn(false)
+            formikVerifyCustomer.resetForm()
+            onClose()
+          }}
+          style={{
+            cursor: 'pointer',
+            float: 'right',
+            marginTop: '-20px',
+            marginRight: '-185px',
+            width: '45px',
+          }}
+        />
+      </CustomerDialogTitle>
       <DialogContent>
         <Grid container spacing={1}>
+          <GridTextField item xs={6} sm={6}>
+            <img src="./images/verify.png" />
+          </GridTextField>
+          <GridTextField item xs={6} sm={6} className={classes.verifyTextBox}>
+            <Typography
+              component="h1"
+              variant="h4"
+              align="center"
+              style={{
+                fontFamily: 'Prompt',
+                fontSize: '22px',
+                color: 'white',
+              }}
+            >
+              ตรวจสอบความถูกต้อง <br/> และยืนยันข้อมูล
+            </Typography>
+          </GridTextField>
           <GridTextField item xs={8} sm={8}>
             <TextField
+              className={classes.customInputTextField}
               type="number"
               name="mobilePhone"
               id="verify_member__mobileName"
@@ -147,6 +257,7 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
           </GridTextField>
           <GridTextField item xs={4} sm={4} style={{ display: 'flex', alignItems: 'center' }}>
             <Button
+              className={classes.button}
               color="primary"
               disabled={!enableRequestOTPBtn}
               onClick={() => {
@@ -199,6 +310,7 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
             <TextField
               type="text"
               name="lineId"
+              className={classes.customInputTextField}
               disabled={isLoggedIn || isLineVerified}
               id="verify_member__lineId"
               label="ไลน์ไอดี"
@@ -219,6 +331,7 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
           </GridTextField>
           <GridTextField item xs={4} sm={4} style={{ display: 'flex', alignItems: 'center' }}>
             <Button
+              className={classes.button}
               color="primary"
               disabled={enableLinkLineBtn || isLineVerified}
               onClick={() => {
@@ -232,23 +345,6 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
           </GridTextField>
         </Grid>
       </DialogContent>
-      <DialogActions>
-        <Button
-          color="primary"
-          onClick={() => {
-            setEnableRequestOTPBtn(false)
-            setEnableLinkLineBtn(false)
-            setShowInputOTP(false)
-            setEnableVerifyOTPBtn(false)
-            formikVerifyCustomer.resetForm()
-            onClose()
-          }}
-          variant="contained"
-          id="close_btn"
-        >
-          ปิด
-        </Button>
-      </DialogActions>
-    </Dialog>
+    </CustomerDialog>
   )
 }
