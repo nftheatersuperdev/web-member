@@ -207,7 +207,7 @@ export default function Profile(): JSX.Element {
           style={{
             backgroundImage: `url('./images/noname.png')`,
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
+            backgroundSize: 'cover',
             backgroundColor: 'transparent',
           }}
         >
