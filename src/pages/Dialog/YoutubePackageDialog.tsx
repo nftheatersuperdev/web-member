@@ -1,3 +1,5 @@
+/* eslint-disable react/forbid-component-props */
+import { Box, Card, CardActionArea, CardContent } from '@material-ui/core'
 import {
   Button,
   Dialog,
@@ -11,13 +13,11 @@ import {
   TableCell,
   TableContainer,
   TableRow,
+  Typography,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import toast from 'react-hot-toast'
 import { getYoutubePackage } from 'services/member'
 
 interface YoutubePackageDialogProps {
@@ -46,12 +46,22 @@ export default function YoutubePackageDialogDialog(props: YoutubePackageDialogPr
       color: 'white',
     },
     dialogHeader: {
-      backgroundImage: 'url(/youtube-package-header.jpg)',
+      backgroundImage: 'url(/youtube-package-header.png)',
       backgroundSize: 'cover',
-      height: '100px',
+      height: '215px',
     },
     dialog: {
       backgroundColor: 'black',
+    },
+    card: {
+      backgroundColor: 'black',
+    },
+    cardItem: {
+      color: 'white',
+      marginTop: '10px',
+      marginBottom: '10px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      borderRadius: '15px',
     },
   })
   const classes = useStyles()
@@ -70,23 +80,35 @@ export default function YoutubePackageDialogDialog(props: YoutubePackageDialogPr
     packageList.length > 0 &&
     packageList.map((p) => {
       return (
-        <TableRow key={p.packageId}>
-          <TableCell>
-            <Radio
-              sx={{
-                color: 'white',
-              }}
-              checked={selectedPackage === p.packageId}
-              onChange={handleChange}
-              value={p.packageId}
-              name="radio-buttons"
-            />
-          </TableCell>
-          <TableCell className={classes.textWhite}>{p.packageName}</TableCell>
-          <TableCell className={classes.textWhite} align="center">
-            {p.packagePrice} บาท
-          </TableCell>
-        </TableRow>
+        // <TableRow key={p.packageId}>
+        //   <TableCell className={classes.textWhite}>{p.packageName}</TableCell>
+        //   <TableCell className={classes.textWhite} align="center">
+        //     {p.packagePrice} บาท
+        //   </TableCell>
+        // </TableRow>
+        <Card key={p.packageId} className={classes.card}>
+          <CardActionArea className={classes.cardItem}>
+            <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+              <CardContent>
+                <Typography variant="subtitle1" style={{ color: 'dimgray' }}component="div">
+                  แพ็คเกจสำหรับ
+                </Typography>
+                <Typography component="div" variant="h5">
+                  {p.packageName}
+                </Typography>
+              </CardContent>
+              <CardContent>
+                <Typography
+                  variant="h6"
+                  component="div"
+                  style={{ color: 'red', fontStyle: 'bold' }}
+                >
+                  ฿{p.packagePrice}
+                </Typography>
+              </CardContent>
+            </Box>
+          </CardActionArea>
+        </Card>
       )
     })
   // const formikRedeem = useFormik({
@@ -120,17 +142,29 @@ export default function YoutubePackageDialogDialog(props: YoutubePackageDialogPr
   }, [refetch])
   return (
     <Dialog open={open} fullWidth maxWidth="xs" aria-labelledby="form-dialog-title">
+      <div style={{ textAlign: 'center', backgroundColor: 'black' }}>
+        <img
+          src="./images/button_close.png"
+          onClick={() => {
+            onClose()
+          }}
+          style={{
+            cursor: 'pointer',
+            float: 'right',
+            width: '45px',
+          }}
+        />
+      </div>
       <DialogTitle id="form-dialog-title" className={classes.dialogHeader} />
       {/* <form onSubmit={formikRedeem.handleSubmit}> */}
       <form>
         <DialogContent className={classes.dialog}>
-          <TableContainer component={Paper} className={classes.center}>
-            <Table sx={{ minWidth: 150 }} aria-label="simple table">
-              <TableBody>{packages}</TableBody>
-            </Table>
-          </TableContainer>
+          <h2 style={{ textAlign: 'center', color: 'white' }}>
+            แพ็คเกจสำหรับ <br /> <p style={{ color: 'red' }}>Youtube Premium</p>
+          </h2>
+          {packages}
         </DialogContent>
-        <DialogActions className={classes.dialog}>
+        {/* <DialogActions className={classes.dialog}>
           <Button
             color="primary"
             onClick={() => {
@@ -152,7 +186,7 @@ export default function YoutubePackageDialogDialog(props: YoutubePackageDialogPr
           >
             ตกลง
           </Button>
-        </DialogActions>
+        </DialogActions> */}
       </form>
     </Dialog>
   )
