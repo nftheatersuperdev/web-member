@@ -58,9 +58,6 @@ export default function NetflixPackageDialog(props: NetflixPackageDialogProps): 
     dialog: {
       backgroundColor: 'black',
     },
-    dialog: {
-      backgroundColor: 'black',
-    },
     card: {
       backgroundColor: 'black',
     },

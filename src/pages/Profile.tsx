@@ -735,6 +735,10 @@ export default function Profile(): JSX.Element {
           refetch()
           setOpenVerifySuccessDialog(false)
         }}
+        onOpenRewardList={() => {
+          setOpenVerifySuccessDialog(false)
+          setOpenRewardListDialog(true)
+        }}
       />
       <RewardDialog
         open={openRewardDialog}
