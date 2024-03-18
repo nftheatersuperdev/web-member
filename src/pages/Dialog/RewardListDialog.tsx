@@ -1,19 +1,13 @@
-import { Stars } from '@mui/icons-material'
 import {
+  Box,
   Button,
+  Card,
+  CardActionArea,
+  CardContent,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
-  IconButton,
-  Paper,
-  Radio,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  Typography,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useEffect, useState } from 'react'
@@ -44,6 +38,36 @@ export default function RewardListDialog(props: RewardListDialogProps): JSX.Elem
     padding: {
       paddingBottom: '50px',
     },
+    dialog: {
+      backgroundColor: 'black',
+    },
+    dialogHeader: {
+      backgroundColor: 'black',
+      color: 'white',
+    },
+    card: {
+      backgroundColor: 'black',
+    },
+    cardItem: {
+      color: 'white',
+      marginTop: '10px',
+      marginBottom: '10px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      borderRadius: '15px',
+    },
+    redeemBtn: {
+      width: '110px',
+      fontFamily: 'Prompt',
+      fontSize: '18px',
+      borderRadius: '38px',
+      background: 'linear-gradient(185.98deg, #FFA928 3.55%, #922D01 100%)',
+      color: '#ffffff',
+      '&:hover': {
+        // backgroundColor: '#000000',
+        backgroundColor: '#D1322F',
+        opacity: [0.9, 0.8, 0.7],
+      },
+    },
   })
   const classes = useStyles()
   const [selectedReward, setSelectedReward] = useState<string>('')
@@ -60,24 +84,49 @@ export default function RewardListDialog(props: RewardListDialogProps): JSX.Elem
     rewardList.length > 0 &&
     rewardList.map((r) => {
       return (
-        <TableRow key={r.id}>
-          <TableCell>
-            <Radio
-              checked={selectedReward === r.id}
-              onChange={handleChange}
-              value={r.id}
-              name="radio-buttons"
-              inputProps={{ 'aria-label': 'A' }}
-            />
-          </TableCell>
-          <TableCell>{r.rewardName}</TableCell>
-          <TableCell align="center">
-            {r.redeemPoint}
-            <IconButton disabled>
-              <Stars sx={{ fontSize: 14, color: 'red' }} />
-            </IconButton>
-          </TableCell>
-        </TableRow>
+        // <TableRow key={r.id}>
+        //   <TableCell>
+        //     <Radio
+        //       checked={selectedReward === r.id}
+        //       onChange={handleChange}
+        //       value={r.id}
+        //       name="radio-buttons"
+        //       inputProps={{ 'aria-label': 'A' }}
+        //     />
+        //   </TableCell>
+        //   <TableCell>{r.rewardName}</TableCell>
+        //   <TableCell align="center">
+        //     {r.redeemPoint}
+        //     <IconButton disabled>
+        //       <Stars sx={{ fontSize: 14, color: 'red' }} />
+        //     </IconButton>
+        //   </TableCell>
+        // </TableRow>
+        <Card key={r.id} className={classes.card}>
+          <CardActionArea className={classes.cardItem}>
+            <Box sx={{ display: 'flex', alignItems: 'center', minWidth: 300 }}>
+              <CardContent sx={{ minWidth: 260 }}>
+                <Typography component="div" variant="h5">
+                  {r.rewardName}
+                </Typography>
+                <br />
+                <Button
+                  className={classes.redeemBtn}
+                  fullWidth
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                  id="redeem_btn"
+                >
+                  แลกแต้ม
+                </Button>
+              </CardContent>
+              <CardContent sx={{ maxWidth: 340 }}>
+                <img src="./images/redeem_point_icon.png" style={{ width: '110px' }}/>
+              </CardContent>
+            </Box>
+          </CardActionArea>
+        </Card>
       )
     })
   const formikRedeem = useFormik({
@@ -111,23 +160,23 @@ export default function RewardListDialog(props: RewardListDialogProps): JSX.Elem
   }, [refetch])
   return (
     <Dialog open={open} fullWidth maxWidth="xs" aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">แลกของรางวัล</DialogTitle>
+      <DialogTitle id="form-dialog-title" className={classes.dialogHeader}>
+        รายการแลกของรางวัล
+        <img
+          src="./images/button_close.png"
+          onClick={() => {
+            onClose()
+          }}
+          style={{
+            cursor: 'pointer',
+            float: 'right',
+            width: '45px',
+          }}
+        />
+      </DialogTitle>
       <form onSubmit={formikRedeem.handleSubmit}>
-        <DialogContent>
-          <TableContainer component={Paper} className={classes.center}>
-            <Table sx={{ minWidth: 150 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">เลือก</TableCell>
-                  <TableCell align="center">รางวัล</TableCell>
-                  <TableCell align="center">แลกคะแนน</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>{reward}</TableBody>
-            </Table>
-          </TableContainer>
-        </DialogContent>
-        <DialogActions>
+        <DialogContent className={classes.dialog}>{reward}</DialogContent>
+        {/* <DialogActions>
           <Button
             color="primary"
             onClick={() => {
@@ -149,7 +198,7 @@ export default function RewardListDialog(props: RewardListDialogProps): JSX.Elem
           >
             แลกรางวัล
           </Button>
-        </DialogActions>
+        </DialogActions> */}
       </form>
     </Dialog>
   )
