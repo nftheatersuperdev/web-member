@@ -3,11 +3,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/forbid-component-props */
-import { VisibilityOff, Visibility, ContentCopy, ContactPage, Stars } from '@mui/icons-material'
+import { ContentCopy } from '@mui/icons-material'
 import {
   Backdrop,
+  Box,
   Button,
-  ButtonBase,
+  // ButtonBase,
   Card,
   CircularProgress,
   Container,
@@ -18,6 +19,7 @@ import {
   Typography,
   styled,
 } from '@mui/material'
+import Divider from '@material-ui/core/Divider'
 import React, { useEffect, useState } from 'react'
 import { useLiff } from 'react-liff'
 import { makeStyles } from '@mui/styles'
@@ -39,18 +41,37 @@ export const Wrapper = styled(Card)`
 `
 export const DisabledField = styled(TextField)`
   background-color: rgba(0, 0, 0, 0.21);
+  margin-top: 2px;
+  border-radius: 10px;
+  .MuiOutlinedInput-input {
+    padding: 0 10px;
+  }
   .MuiInputBase-input:disabled {
     -webkit-text-fill-color: white !important;
+    padding: 0px 10 px !important;
+    font-size: 14px !important;
   }
   label.Mui-disabled {
     color: #000000 !important;
     -webkit-text-fill-color: #000000 !important;
   }
+  .Mui-disabled .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0);
+  }
 `
-const ImageButton = styled(ButtonBase)`
-  position: 'relative',
-  height: 200,
+
+export const LabelWrapper = styled('div')`
+  margin-top: 2px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.21);
+  border-color: rgba(0, 0, 0, 0);
+  padding: 5px 10px;
 `
+
+// const ImageButton = styled(ButtonBase)`
+//   position: 'relative',
+//   height: 200,
+// `
 
 export const ImageSrc = styled('span')`
   position: 'absolute',
@@ -60,13 +81,6 @@ export const ImageSrc = styled('span')`
   bottom: 0,
   backgroundSize: 'cover',
   backgroundPosition: 'center 40%',
-`
-
-export const Divider = styled('div')`
-  border: '1px solid gray',
-  borderBottom: '1px',
-  borderLeft: '1px',
-  borderRight: '1px',  
 `
 
 export default function Profile(): JSX.Element {
@@ -79,8 +93,8 @@ export default function Profile(): JSX.Element {
     },
   })
   const classes = useStyles()
-  const { isLoggedIn, liff } = useLiff()
-  const [showPassword, setShowPassword] = useState(false)
+  const { liff } = useLiff()
+  // const [showPassword, setShowPassword] = useState(false)
   const [openVerifyMemberDialog, setOpenVerifyMemberDialog] = useState(false)
   const [openVerifySuccessDialog, setOpenVerifySuccessDialog] = useState(false)
   const [openRewardListDialog, setOpenRewardListDialog] = useState(false)
@@ -97,7 +111,7 @@ export default function Profile(): JSX.Element {
     staleTime: 5 * (60 * 1000),
   })
   const profile = customerProfile?.data
-  const handleClickShowPassword = () => setShowPassword((show) => !show)
+  // const handleClickShowPassword = () => setShowPassword((show) => !show)
   const handleClose = () => {
     setOpen(false)
   }
@@ -135,14 +149,7 @@ export default function Profile(): JSX.Element {
         ''
       )}
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <br />
-        <Grid
-          spacing={3}
-          container
-          xs={12}
-          sm={12}
-          style={{ display: 'grid', placeItems: 'center' }}
-        >
+        <Box style={{ textAlign: 'center', marginBottom: 20 }}>
           <Typography
             component="h1"
             variant="h4"
@@ -151,164 +158,231 @@ export default function Profile(): JSX.Element {
           >
             NF THEATER
           </Typography>
-        </Grid>
-        <br />
-        <br />
-        <br />
-        <br />
-        <Grid container spacing={3}>
-          <Grid item xs={1} sm={1} style={{ position: 'relative' }}>
-            <img
-              src="./images/icon_id.png"
-              style={{ position: 'absolute', bottom: '5px', width: '35px' }}
-            />
-          </Grid>
-          <Grid item xs={3} sm={3} style={{ position: 'relative' }}>
-            <Typography
-              variant="h5"
-              align="left"
-              style={{ position: 'absolute', bottom: '0', paddingLeft: '10px' }}
-            >
-              <div style={{ color: 'white', fontSize: '16px' }}>ไอดี</div>
-              <div style={{ color: 'yellow', fontSize: '16px', fontWeight: 'bolder' }}>
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '30%' }}>
+            <img src="./images/icon_id.png" style={{ height: '30px', marginRight: 10 }} />
+            <Typography variant="h5" align="left">
+              <div style={{ color: 'white', fontSize: '14px' }}>ไอดี</div>
+              <div style={{ color: 'yellow', fontSize: '14px', fontWeight: 'bolder' }}>
                 {profile?.userId}
               </div>
             </Typography>
-          </Grid>
-          <Grid item xs={4} sm={4} style={{ position: 'relative' }}>
-            <img
-              src="./images/profile.png"
-              style={{ position: 'absolute', left: '40px', top: '-36px' }}
-            />
-          </Grid>
-          <Grid item xs={1} sm={1} style={{ position: 'relative' }}>
-            <img
-              src="./images/icon_point.png"
-              style={{ position: 'absolute', bottom: '5px', width: '35px' }}
-            />
-          </Grid>
-          <Grid item xs={3} sm={3} style={{ position: 'relative' }}>
-            <Typography
-              variant="h5"
-              align="left"
-              style={{ position: 'absolute', bottom: '0', paddingLeft: '10px' }}
+          </Box>
+          <Box>
+            <div
+              style={{
+                flex: 1,
+                textAlign: 'center',
+                width: '100%',
+              }}
             >
-              <div style={{ color: 'white', fontSize: '16px' }}>แต้มแนะนำเพื่อน</div>
-              <div style={{ color: 'yellow', fontSize: '16px', fontWeight: 'bolder' }}>
+              <img
+                style={{
+                  padding: '0 10px',
+                  background: 'linear-gradient(rgba(39, 8, 36, 1), rgba(7, 14, 23, 1))',
+                  borderRadius: '360px',
+                }}
+                src="./images/profile.png"
+              />
+            </div>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              paddingRight: 0,
+              width: '30%',
+            }}
+          >
+            <img src="./images/icon_point.png" height={30} style={{ marginRight: 10 }} />
+            <Typography variant="h5" align="left">
+              <div style={{ color: 'white', fontSize: '14px' }}>คะแนนสะสม</div>
+              <div style={{ color: 'yellow', fontSize: '14px', fontWeight: 'bolder' }}>
                 {profile?.memberPoint}
               </div>
             </Typography>
-          </Grid>
-        </Grid>
-        <br />
-        <Paper
-          elevation={24}
-          variant="outlined"
+          </Box>
+        </Box>
+        <Box
           style={{
-            backgroundImage: `url('./images/noname.png')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundColor: 'transparent',
+            background:
+              'linear-gradient(204deg, rgba(255,0,0,1) 0%, rgba(121,9,9,1) 72%, rgba(68,49,49,1) 100%)',
+            width: '100%',
+            marginTop: '-55px',
+            borderRadius: '24px',
           }}
         >
-          <Grid container spacing={3}>
-            <br />
-            <br />
-            <br />
-            <br />
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              style={{ marginRight: '15px' }}
-              className={profile?.netflixPackageName === null ? classes.hideObject : ''}
+          <Box sx={{ paddingTop: '50px', paddingBottom: '10px' }}>
+            <Box
+              style={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: '10px 20px 10px 10px',
+              }}
             >
-              <table style={{ width: '100%' }}>
-                <tr>
-                  <td rowSpan={3} style={{ verticalAlign: 'top' }}>
-                    <img style={{ width: '60px' }} src="/logo-netflix.png" />
-                  </td>
-                  <td>
+              <Box style={{ verticalAlign: 'top', marginRight: '10px' }}>
+                <img style={{ width: '60px' }} src="/logo-netflix.png" />
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 0' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <Typography
                       variant="h5"
                       align="left"
                       style={{
-                        fontSize: '22px',
+                        fontSize: '14px',
                         fontWeight: '400',
                         color: 'white',
                       }}
                     >
-                      แพ็คเกจ NETFLIX <br /> {profile?.netflixPackageName}
+                      แพ็คเกจ NETFLIX
                     </Typography>
-                  </td>
-                  <td>
                     <Typography
                       variant="h5"
                       align="left"
                       style={{
-                        fontSize: '22px',
-                        fontWeight: '400',
+                        fontSize: '16px',
+                        fontWeight: 'bold',
                         color: 'white',
-                        textAlign: 'right',
                       }}
                     >
-                      เหลือวันใช้งาน <br /> {profile?.netflixDayLeft}
+                      {profile?.netflixPackageName}
                     </Typography>
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan={2}>
-                    <DisabledField
-                      type="text"
-                      style={{ WebkitTextFillColor: 'white !important' }}
-                      fullWidth
-                      disabled
-                      variant="outlined"
-                      value={'Email : ' + profile?.netflixEmail}
-                      InputProps={{
-                        endAdornment: (
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() =>
-                              copyContent(`${profile?.netflixEmail}`, `${profile?.netflixPassword}`)
-                            }
-                            edge="end"
-                          >
-                            <ContentCopy style={{ color: 'white' }} />
-                          </IconButton>
-                        ),
+                  </Box>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'right' }}>
+                    <div>
+                      <Typography
+                        variant="h5"
+                        align="left"
+                        style={{
+                          fontSize: '14px',
+                          fontWeight: '400',
+                          color: 'white',
+                          textAlign: 'right',
+                        }}
+                      >
+                        เหลือวันใช้งาน
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        align="left"
+                        style={{
+                          fontSize: '16px',
+                          fontWeight: 'bold',
+                          color: 'white',
+                          textAlign: 'right',
+                        }}
+                      >
+                        {profile?.netflixDayLeft}
+                      </Typography>
+                    </div>
+                  </Box>
+                </Box>
+                <div style={{ marginTop: '10px' }}>
+                  <LabelWrapper
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        maxWidth: '80%',
                       }}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td colSpan={2}>
-                    <DisabledField
-                      type={showPassword ? 'text' : 'password'}
-                      fullWidth
-                      disabled
-                      variant="outlined"
-                      value={'Password : ' + profile?.netflixPassword}
-                      InputProps={{
-                        endAdornment: (
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            edge="end"
-                          >
-                            {showPassword ? (
-                              <VisibilityOff style={{ color: 'white' }} />
-                            ) : (
-                              <Visibility style={{ color: 'white' }} />
-                            )}
-                          </IconButton>
-                        ),
+                    >
+                      <span
+                        style={{
+                          flex: '1 0',
+                          fontSize: '14px',
+                          fontWeight: 'bold',
+                          color: '#FF7373',
+                          marginRight: '5px',
+                        }}
+                      >
+                        {'Email: '}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: '14px',
+                          fontWeight: '400',
+                          color: 'white',
+                          overflow: 'hidden',
+                          whiteSpace: 'nowrap',
+                          textOverflow: 'ellipsis',
+                        }}
+                      >
+                        {profile?.netflixEmail}
+                      </span>
+                    </div>
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      style={{ padding: '3px 10px ' }}
+                      onClick={() =>
+                        copyContent(`${profile?.netflixEmail}`, `${profile?.netflixPassword}`)
+                      }
+                      edge="end"
+                    >
+                      <ContentCopy style={{ color: 'white' }} fontSize="small" />
+                    </IconButton>
+                  </LabelWrapper>
+                  <LabelWrapper
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        maxWidth: '80%',
                       }}
-                    />
-                  </td>
-                </tr>
-              </table>
-            </Grid>
+                    >
+                      <span
+                        style={{
+                          flex: '1 0',
+                          fontSize: '14px',
+                          fontWeight: 'bold',
+                          color: '#FF7373',
+                          marginRight: '5px',
+                        }}
+                      >
+                        {'Password: '}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: '14px',
+                          fontWeight: '400',
+                          color: 'white',
+                          overflow: 'hidden',
+                          whiteSpace: 'nowrap',
+                          textOverflow: 'ellipsis',
+                        }}
+                      >
+                        **********
+                      </span>
+                    </div>
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      style={{ padding: '3px 10px ' }}
+                      onClick={() =>
+                        copyContent(`${profile?.netflixEmail}`, `${profile?.netflixPassword}`)
+                      }
+                      edge="end"
+                    >
+                      <ContentCopy style={{ color: 'white' }} fontSize="small" />
+                    </IconButton>
+                  </LabelWrapper>
+                </div>
+              </Box>
+            </Box>
             {/* <Grid
               item
               xs={12}
@@ -437,22 +511,9 @@ export default function Profile(): JSX.Element {
                 }}
               />
             </Grid> */}
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              style={{ display: 'grid', alignItems: 'center', justifyItems: 'center' }}
-            >
-              <div
-                style={{
-                  width: '80%',
-                  border: '1px solid white',
-                  borderBottom: '1px',
-                  borderLeft: '1px',
-                  borderRight: '1px',
-                }}
-              />
-            </Grid>
+            <div style={{ width: '100%', textAlign: 'center' }}>
+              <Divider style={{ backgroundColor: 'rgba(255,255,255,0.3' }} variant="middle" />
+            </div>
             <br />
             <Grid
               item
@@ -562,8 +623,8 @@ export default function Profile(): JSX.Element {
               /> */}
             </Grid>
             <Grid item xs={12} sm={12} />
-          </Grid>
-        </Paper>
+          </Box>
+        </Box>
         <Paper
           elevation={24}
           variant="outlined"
