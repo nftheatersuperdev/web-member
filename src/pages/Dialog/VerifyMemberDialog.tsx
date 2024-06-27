@@ -11,6 +11,7 @@ import {
   Button,
   IconButton,
   Typography,
+  Box,
 } from '@mui/material'
 import styled from 'styled-components'
 import VerifiedIcon from '@mui/icons-material/Verified'
@@ -26,22 +27,32 @@ import './App.css'
 const CustomerDialogTitle = styled(DialogTitle)`
   font-weight: 700 !important;
   text-align: center !important;
-  font-size: 28px !important;
+  font-size: 24px !important;
   color: #fff;
   border: 1px solid black;
-  width: 288px;
+  width: 80% !important;
+  align-self: center;
   height: 66px;
-  margin-left: 150px !important;
   border-radius: 0px 0px 80px 80px;
   background: linear-gradient(212.22deg, #ff0000 1.6%, #3a0000 100%);
 `
 const CustomerDialog = styled(Dialog)`
   .MuiPaper-root { 
+    width: 100%;
+    overflow-y: visible;
     border-radius: 25px;
     border: 2px solid black;
     background: linear-gradient(212.22deg, #FF0000 1.6%, #3A0000 100%);
     linear-gradient(180deg, rgba(255, 254, 254, 0) 8.33%, rgba(255, 0, 0, 0.25) 100%);
   }
+`
+
+const CloseButtonTopRight = styled.div`
+  cursor: pointer;
+  position: absolute;
+  top: -30px;
+  right: -5px;
+  width: 45px;
 `
 
 interface VerifyMemberDialogProps {
@@ -187,47 +198,41 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
 
   return (
     <CustomerDialog open={open} fullWidth aria-labelledby="form-dialog-title">
-      <CustomerDialogTitle id="form-dialog-title">
-        ยืนยันสมาชิก
-        <img
-          src="./images/button_close.png"
-          onClick={() => {
-            setEnableRequestOTPBtn(false)
-            setEnableLinkLineBtn(false)
-            setShowInputOTP(false)
-            setEnableVerifyOTPBtn(false)
-            formikVerifyCustomer.resetForm()
-            onClose()
-          }}
-          style={{
-            cursor: 'pointer',
-            float: 'right',
-            marginTop: '-20px',
-            marginRight: '-185px',
-            width: '45px',
-          }}
-        />
-      </CustomerDialogTitle>
+      <CloseButtonTopRight
+        onClick={() => {
+          setEnableRequestOTPBtn(false)
+          setEnableLinkLineBtn(false)
+          setShowInputOTP(false)
+          setEnableVerifyOTPBtn(false)
+          formikVerifyCustomer.resetForm()
+          onClose()
+        }}
+      >
+        <img src="./images/button_close.png" />
+      </CloseButtonTopRight>
+      <CustomerDialogTitle id="form-dialog-title">ยืนยันสมาชิก</CustomerDialogTitle>
       <DialogContent>
-        <Grid container spacing={1}>
-          <GridTextField item xs={6} sm={6}>
-            <img src="./images/verify.png" />
-          </GridTextField>
-          <GridTextField item xs={6} sm={6} className={classes.verifyTextBox}>
-            <Typography
-              component="h1"
-              variant="h4"
-              align="center"
-              style={{
-                fontFamily: 'Prompt',
-                fontSize: '22px',
-                color: 'white',
-              }}
-            >
-              ตรวจสอบความถูกต้อง <br/> และยืนยันข้อมูล
-            </Typography>
-          </GridTextField>
-          <GridTextField item xs={8} sm={8}>
+        <Box>
+          <Box sx={{ display: 'flex' }}>
+            <Box>
+              <img src="./images/verify.png" />
+            </Box>
+            <Box className={classes.verifyTextBox}>
+              <Typography
+                component="h1"
+                variant="h4"
+                align="center"
+                style={{
+                  fontFamily: 'Prompt',
+                  fontSize: '18px',
+                  color: 'white',
+                }}
+              >
+                ตรวจสอบความถูกต้องและยืนยันข้อมูล
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ marginTop: '20px' }}>
             <TextField
               className={classes.customInputTextField}
               type="number"
@@ -254,8 +259,8 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
               }}
               value={formikVerifyCustomer.values.phoneNumber}
             />
-          </GridTextField>
-          <GridTextField item xs={4} sm={4} style={{ display: 'flex', alignItems: 'center' }}>
+          </Box>
+          <Box style={{ textAlign: 'center', margin: '20px 0' }}>
             <Button
               className={classes.button}
               color="primary"
@@ -268,8 +273,8 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
             >
               รับรหัส OTP
             </Button>
-          </GridTextField>
-          <GridTextField item xs={12} sm={12} className={showInputOTP ? '' : classes.hideObject}>
+          </Box>
+          <Box className={showInputOTP ? '' : classes.hideObject}>
             <div className="App">
               <OTPInput
                 autoFocus
@@ -286,13 +291,10 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
                 }}
               />
             </div>
-          </GridTextField>
-          <GridTextField
-            item
-            xs={12}
-            sm={12}
+          </Box>
+          <Box
             className={showInputOTP ? '' : classes.hideObject}
-            style={{ marginBottom: '5%', textAlign: 'center' }}
+            style={{ textAlign: 'center', margin: '20px 0' }}
           >
             <Button
               color="primary"
@@ -305,8 +307,8 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
             >
               ยืนยัน OTP
             </Button>
-          </GridTextField>
-          <GridTextField item xs={8} sm={8}>
+          </Box>
+          <Box sx={{ display: 'flex' }}>
             <TextField
               type="text"
               name="lineId"
@@ -328,8 +330,8 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
                 ),
               }}
             />
-          </GridTextField>
-          <GridTextField item xs={4} sm={4} style={{ display: 'flex', alignItems: 'center' }}>
+          </Box>
+          <Box style={{ textAlign: 'center', margin: '20px 0' }}>
             <Button
               className={classes.button}
               color="primary"
@@ -342,8 +344,8 @@ export default function VerifyMemberDialog(props: VerifyMemberDialogProps): JSX.
             >
               เชื่อมต่อกับ Line
             </Button>
-          </GridTextField>
-        </Grid>
+          </Box>
+        </Box>
       </DialogContent>
     </CustomerDialog>
   )
