@@ -40,8 +40,10 @@ export default function NetflixPackageDialog(props: NetflixPackageDialogProps): 
     },
     dialogHeader: {
       backgroundImage: 'url(/netflix-package-header.png)',
-      backgroundSize: 'cover',
+      backgroundSize: 'contain',
       height: '215px',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: 'black',
     },
     dialog: {
       backgroundColor: 'black',

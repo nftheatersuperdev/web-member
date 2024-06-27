@@ -225,10 +225,10 @@ export default function Profile(): JSX.Element {
                 padding: '10px 20px 10px 10px',
               }}
             >
-              <Box style={{ verticalAlign: 'top', marginRight: '10px' }}>
-                <img style={{ width: '60px' }} src="/logo-netflix.png" />
+              <Box style={{ verticalAlign: 'top', marginRight: '10px', maxWidth: '20%' }}>
+                <img style={{ width: '100%', maxWidth: 60 }} src="/logo-netflix.png" />
               </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 0' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 0', maxWidth: '80%' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <Typography
@@ -266,7 +266,7 @@ export default function Profile(): JSX.Element {
                           textAlign: 'right',
                         }}
                       >
-                        เหลือวันใช้งาน
+                        วันใช้งาน
                       </Typography>
                       <Typography
                         variant="h5"
