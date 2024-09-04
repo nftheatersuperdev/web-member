@@ -61,3 +61,16 @@ export interface YoutubePackage {
 export interface GetYoutubePackageResponse {
   data: YoutubePackage[]
 }
+
+export interface CreatePaymentRequest {
+  paymentType: string
+  packageId: string
+  userEmail: string
+  userTelNo: string
+}
+
+export interface CreatePaymentResponse {
+  data: {
+    paymentUrl: string
+  }
+}

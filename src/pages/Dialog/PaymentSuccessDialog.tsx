@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, Grid, Typography } from '@mui/material'
 import styled from 'styled-components'
 import { makeStyles } from '@mui/styles'
+import { TaskAlt } from '@mui/icons-material'
 
 const CustomerDialog = styled(Dialog)`
   .MuiPaper-root { 
@@ -10,14 +11,13 @@ const CustomerDialog = styled(Dialog)`
     linear-gradient(180deg, rgba(255, 254, 254, 0) 8.33%, rgba(255, 0, 0, 0.25) 100%);
   }
 `
-interface VerifySuccessDialogProps {
+interface PaymentSuccessDialogProps {
   open: boolean
   onClose: () => void
-  onOpenRewardList: () => void
 }
 
-export default function VerifySuccessDialog(props: VerifySuccessDialogProps): JSX.Element {
-  const { open, onClose, onOpenRewardList } = props
+export default function PaymentSuccessDialog(props: PaymentSuccessDialogProps): JSX.Element {
+  const { open, onClose } = props
   const useStyles = makeStyles({
     hideObject: {
       display: 'none',
@@ -59,36 +59,29 @@ export default function VerifySuccessDialog(props: VerifySuccessDialogProps): JS
         <Grid container spacing={1}>
           <Grid item xs={12} sm={12} className={classes.center}>
             <Typography component="h1" variant="h4" align="center" style={{ color: 'white' }}>
-              คุณได้รับแต้ม
+              ชำระเงินสำเร็จ
             </Typography>
             <Typography component="h1" variant="h6" align="center" style={{ color: 'white' }}>
-              สะสมให้ครบ เพื่อแลกของรางวัล
+              ระบบได้ทำการสมัคร/ต่ออายุแพ็คเก็จของคุณเรียบร้อยแล้ว
             </Typography>
           </Grid>
           <Grid item xs={12} sm={12} className={classes.center}>
-            <img src="./images/square.png" style={{ width: '50%' }} />
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              style={{ position: 'absolute', bottom: '30%', left: '47.5%', color: 'yellow' }}
-            >
-              1
-            </Typography>
+            <Button>
+              <TaskAlt style={{ color: '#19ff19', fontSize: '150px' }} />
+            </Button>
           </Grid>
         </Grid>
       </DialogContent>
       <DialogActions
-        style={{ justifyContent: 'center' }}
-      >
+          style={{ justifyContent: 'center' }}>
         <Button
           className={classes.yellowBtn}
           type="submit"
           variant="contained"
           id="redeem_btn"
-          onClick={() => onOpenRewardList()}
+          onClick={() => onClose()}
         >
-          แลกของรางวัล
+            ตกลง
         </Button>
       </DialogActions>
     </CustomerDialog>

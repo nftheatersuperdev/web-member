@@ -25,6 +25,7 @@ import { useLiff } from 'react-liff'
 import { makeStyles } from '@mui/styles'
 import { useQuery } from 'react-query'
 import toast from 'react-hot-toast'
+import { useLocation } from 'react-router-dom'
 import { getMemberProfile } from 'services/member'
 import { logout } from 'services/auth'
 import { copyText } from 'components/copyContent'
@@ -34,6 +35,8 @@ import RewardDialog from './Dialog/RewardDialog'
 import RewardListDialog from './Dialog/RewardListDialog'
 import NetflixPackageDialog from './Dialog/NetflixPackageDialog'
 import YoutubePackageDialog from './Dialog/YoutubePackageDialog'
+import PaymentDialog from './Dialog/PaymentDialog'
+import PaymentSuccessDialog from './Dialog/PaymentSuccessDialog'
 
 export const Wrapper = styled(Card)`
   padding: 15px;
@@ -83,6 +86,10 @@ export const ImageSrc = styled('span')`
   backgroundPosition: 'center 40%',
 `
 
+export interface DialogParam {
+  id: string
+}
+
 export default function Profile(): JSX.Element {
   const useStyles = makeStyles({
     hideObject: {
@@ -101,14 +108,23 @@ export default function Profile(): JSX.Element {
   const [openRewardDialog, setOpenRewardDialog] = useState(false)
   const [openNetflixPackageDialog, setOpenNetflixPackageDialog] = useState(false)
   const [openYoutubePackageDialog, setOpenYoutubePackageDialog] = useState(false)
+  const [openPaymentDialog, setOpenPaymentDialog] = useState(false)
+  const searchParams = useLocation().search
+  const queryString = new URLSearchParams(searchParams)
+  const isPaymentSuccessParam = queryString.get('isPaymentSuccess')
+  const [openPaymentSuccessDialog, setOpenPaymentSuccessDialog] = useState(
+    isPaymentSuccessParam !== undefined && isPaymentSuccessParam === 'true' ? true : false
+  )
+  const [selectedPackageId, setSelectedPackageId] = useState<string>('')
+  const [selectedPackageName, setSelectedPackageName] = useState<string>('')
+  const [selectedPackagePrice, setSelectedPackagePrice] = useState<number>(0)
   const [open, setOpen] = useState(true)
   const {
     data: customerProfile,
     refetch,
     isFetching,
   } = useQuery('customer-profile', () => getMemberProfile(), {
-    cacheTime: 10 * (60 * 1000),
-    staleTime: 5 * (60 * 1000),
+    refetchOnWindowFocus: false,
   })
   const profile = customerProfile?.data
   // const handleClickShowPassword = () => setShowPassword((show) => !show)
@@ -131,7 +147,7 @@ export default function Profile(): JSX.Element {
       },
     })
   }
-
+  console.log("payment: " + isPaymentSuccessParam)
   useEffect(() => {
     refetch()
   }, [refetch])
@@ -225,10 +241,10 @@ export default function Profile(): JSX.Element {
                 padding: '10px 20px 10px 10px',
               }}
             >
-              <Box style={{ verticalAlign: 'top', marginRight: '10px' }}>
-                <img style={{ width: '60px' }} src="/logo-netflix.png" />
+              <Box style={{ verticalAlign: 'top', marginRight: '10px', maxWidth: '20%' }}>
+                <img style={{ width: '100%', maxWidth: 60 }} src="/logo-netflix.png" />
               </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 0' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 0', maxWidth: '80%' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <Typography
@@ -266,7 +282,7 @@ export default function Profile(): JSX.Element {
                           textAlign: 'right',
                         }}
                       >
-                        เหลือวันใช้งาน
+                        วันใช้งาน
                       </Typography>
                       <Typography
                         variant="h5"
@@ -819,10 +835,30 @@ export default function Profile(): JSX.Element {
       <NetflixPackageDialog
         open={openNetflixPackageDialog}
         onClose={() => setOpenNetflixPackageDialog(false)}
+        onOpenPayment={(id: string, name: string, price: number) => {
+          setOpenNetflixPackageDialog(false)
+          setOpenPaymentDialog(true)
+          setSelectedPackageId(id)
+          setSelectedPackageName(name)
+          setSelectedPackagePrice(price)
+        }}
       />
       <YoutubePackageDialog
         open={openYoutubePackageDialog}
         onClose={() => setOpenYoutubePackageDialog(false)}
+      />
+      <PaymentDialog
+        open={openPaymentDialog}
+        onClose={() => {
+          setOpenPaymentDialog(false)
+        }}
+        packageId={selectedPackageId}
+        packageName={selectedPackageName}
+        price={selectedPackagePrice}
+      />
+      <PaymentSuccessDialog
+        open={openPaymentSuccessDialog}
+        onClose={() => setOpenPaymentSuccessDialog(false)}
       />
     </React.Fragment>
   )

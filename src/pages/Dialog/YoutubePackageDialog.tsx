@@ -47,7 +47,9 @@ export default function YoutubePackageDialogDialog(props: YoutubePackageDialogPr
     },
     dialogHeader: {
       backgroundImage: 'url(/youtube-package-header.png)',
-      backgroundSize: 'cover',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: 'black',
       height: '215px',
     },
     dialog: {
