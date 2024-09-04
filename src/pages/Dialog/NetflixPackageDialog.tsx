@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/forbid-dom-props */
+/* eslint-disable jsx-a11y/alt-text */
 import {
   Box,
   Card,
@@ -9,17 +13,19 @@ import {
   Typography,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { getNetflixPackage } from 'services/member'
 
 interface NetflixPackageDialogProps {
   open: boolean
   onClose: () => void
+  onOpenPayment: (id: string, name: string, price: number) => void
 }
 
 export default function NetflixPackageDialog(props: NetflixPackageDialogProps): JSX.Element {
-  const { open, onClose } = props
+  const { open, onClose, onOpenPayment } = props
+
   const useStyles = makeStyles({
     hideObject: {
       display: 'none',
@@ -58,14 +64,8 @@ export default function NetflixPackageDialog(props: NetflixPackageDialogProps): 
     },
   })
   const classes = useStyles()
-  const [selectedPackage, setSelectedPackage] = useState<string>('')
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedPackage(event.target.value)
-    //   formikRedeem.setFieldValue('rewardId', event.target.value)
-  }
   const { data: packageList, refetch } = useQuery('netflix-package', () => getNetflixPackage(), {
-    cacheTime: 10 * (60 * 1000),
-    staleTime: 5 * (60 * 1000),
+    refetchOnWindowFocus: false,
   })
 
   const packages =
@@ -73,11 +73,18 @@ export default function NetflixPackageDialog(props: NetflixPackageDialogProps): 
     packageList.length > 0 &&
     packageList.map((p) => {
       return (
-        <Card key={p.packageId} className={classes.card}>
+        <Card
+          key={p.packageId}
+          className={classes.card}
+          style={{ paddingTop: '10px' }}
+          onClick={() => {
+            onOpenPayment(p.packageId, p.packageName, p.packagePrice)
+          }}
+        >
           <CardActionArea className={classes.cardItem}>
             <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
               <CardContent>
-                <Typography variant="subtitle1" style={{ color: 'dimgray' }}component="div">
+                <Typography variant="subtitle1" style={{ color: 'dimgray' }} component="div">
                   แพ็คเกจสำหรับ
                 </Typography>
                 <Typography component="div" variant="h5">
@@ -98,32 +105,6 @@ export default function NetflixPackageDialog(props: NetflixPackageDialogProps): 
         </Card>
       )
     })
-  // const formikRedeem = useFormik({
-  //   initialValues: {
-  //     rewardId: '',
-  //   },
-  //   validationSchema: Yup.object().shape({
-  //     rewardId: Yup.string().required('กรุณาแลกรางวัลที่ต้องการแลก'),
-  //   }),
-  //   enableReinitialize: true,
-  //   onSubmit: (values) => {
-  //     toast.promise(redeemReward(values.rewardId), {
-  //       loading: 'กำลังดำเนินการ',
-  //       success: () => {
-  //         formikRedeem.resetForm()
-  //         setSelectedReward('')
-  //         // onClose()
-  //         onClose()
-  //         return 'แลกของรางวัลสำเร็จ'
-  //       },
-  //       error: (err) => {
-  //         formikRedeem.resetForm()
-  //         setSelectedReward('')
-  //         return 'แลกของรางวัลไม่สำเร็จ เนื่องจาก ' + err.data.message
-  //       },
-  //     })
-  //   },
-  // })
   useEffect(() => {
     refetch()
   }, [refetch])

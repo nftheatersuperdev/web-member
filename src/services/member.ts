@@ -4,6 +4,8 @@ import {
   GetMemberProfileResponse,
   GetNetflixPackageResponse,
   GetYoutubePackageResponse,
+  CreatePaymentRequest,
+  CreatePaymentResponse,
 } from './member-type'
 
 export const getMemberProfile = async (): Promise<GetMemberProfileResponse> => {
@@ -85,6 +87,20 @@ export const requestOtp = async (mobileNo: string): Promise<string> => {
 
 export const verifyOtp = async (pinCode: string, refCode: string): Promise<string> => {
   const response = await AdminBffAPI.post('/v1/member/verify-otp', { pinCode, refCode })
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error.response) {
+        throw error.response
+      }
+      throw error
+    })
+  return response.data
+}
+
+export const createPayment = async (
+  request: CreatePaymentRequest
+): Promise<CreatePaymentResponse> => {
+  const response = await AdminBffAPI.post('/v1/payments/order-payments', request )
     .then((response) => response.data)
     .catch((error) => {
       if (error.response) {
